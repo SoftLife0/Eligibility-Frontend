@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import Info from './Info';
 import CoreSubjectField from './CoreSubjectField';
 import ElectiveSubjectField from './ElectiveSubjectField';
-
+import SubmitButton from './Button';
 
 
 const Form = () => {
@@ -62,10 +62,48 @@ const Form = () => {
         'A1', 'B2', 'B3', 'C4', 'C5', 'C6', 'D7', 'E8', 'F9', 'None'
     ];
 
+    const handleSubmit = () => {
+        // Prepare the data to be submitted
+        const formData = {
+          name: name,
+          number: number,
+          selectedOption: selectedOption,
+          coreSubjects: coreSubjects,
+          electiveSubjects: electiveSubjects
+        };
+      
+        // Example of logging the form data
+        console.log('Form data:', formData);
+      
+        // Example of sending the form data to a server using fetch
+        fetch('http://example.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          if (response.ok) {
+            // Form submission successful, handle the response
+            console.log('Form submitted successfully!');
+          } else {
+            // Form submission failed, handle the error
+            console.error('Form submission failed:', response.statusText);
+          }
+        })
+        .catch(error => {
+          // Error occurred while sending the form data, handle the error
+          console.error('Error submitting form:', error);
+        });
+    };
+
+
+
   return (
-    <Container>
-        <br />
-        <small className="text-muted" style={{fontSize:'18px'}}> Please fill the form with the details from your slip</small>
+    <Container style={{marginTop:'8vh', background:'#fff'}} >
+       
+        <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 
         {/* Render the Info component passing state variables and handlers */}
         <Info 
@@ -77,8 +115,10 @@ const Form = () => {
             handleOptionChange={handleOptionChange} 
         />
         {/* Other form elements can go here */}
-
-        <h4 style={{fontSize:'1.5rem', marginBottom:'.5rem', fontWeight:'500'}}>Core Subjects</h4>
+        
+        <div style={{marginTop:'8px'}}>
+            <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
+        </div>
 
         {coreSubjects.map((subject, index) => (
         <CoreSubjectField
@@ -90,7 +130,12 @@ const Form = () => {
         />
         ))}
 
-        <h4 style={{fontSize:'1.5rem', marginBottom:'.5rem', fontWeight:'500'}}>Elective Subjects</h4>
+
+        <div style={{marginTop:'8px'}}>
+            <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
+            <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
+        </div>
+
         {electiveSubjects.map((subject, index) => (
             <ElectiveSubjectField
             key={index}
@@ -102,6 +147,9 @@ const Form = () => {
             onGradeChange={(event) => handleElectiveGradeChange(index, event)}
         />
         ))}
+
+        {/* Render the SubmitButton component */}
+        <SubmitButton onClick={handleSubmit} text="Submit" />
 
     </Container>
   )
