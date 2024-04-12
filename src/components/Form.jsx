@@ -59,14 +59,60 @@ const Form = () => {
                     margin="normal"
                     onChange={handleOptionChange}
                     >
-                    <MenuItem value="option1">Option 1</MenuItem>
-                    <MenuItem value="option2">Option 2</MenuItem>
-                    <MenuItem value="option3">Option 3</MenuItem>
+                    <MenuItem value="general-art">General Arts</MenuItem>
+                    <MenuItem value="science">Science</MenuItem>
+                    <MenuItem value="business">Business</MenuItem>
+                    <MenuItem value="visual-arts">Visual Arts</MenuItem>
+                    <MenuItem value="home-economics">Home Economics</MenuItem>
+                    <MenuItem value="agriculture">Agriculture</MenuItem>
                 </TextField>
             </div>
         </Grid>
         
         </Grid>
+
+        <h4 style={{fontSize:'1.5rem', marginBottom:'.5rem', fontWeight:'500'}}>Core Subjects</h4>
+
+        <Grid container spacing={2}>
+            <Grid item xs={6}>
+                <div className="form-group">
+                <TextField
+                    label="Enter your number"
+                    value="Mathematics"
+                    fullWidth
+                    margin="normal"
+                    disabled
+                />
+                </div>
+            </Grid>
+            <Grid item xs={6}>
+                <div className="form-group">
+
+                    <TextField
+                    select
+                    label="Grade"
+                    value="Mathematics"
+                    fullWidth
+                    margin="normal"
+                    >
+                        <MenuItem value="A1">A1</MenuItem>
+                        <MenuItem value="B2">B2</MenuItem>
+                        <MenuItem value="B3">B3</MenuItem>
+                        <MenuItem value="C4">C4</MenuItem>
+                        <MenuItem value="C5">C5</MenuItem>
+                        <MenuItem value="C6">C6</MenuItem>
+                        <MenuItem value="D7">D7</MenuItem>
+                        <MenuItem value="E8">E8</MenuItem>
+                        <MenuItem value="F9">F9</MenuItem>
+                        <MenuItem value="None">None</MenuItem>
+                    
+                </TextField>
+                </div>
+            </Grid>
+        
+        </Grid>
+
+
     </Container>
   )
 }
