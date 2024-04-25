@@ -104,7 +104,7 @@ const Form = () => {
   return (
     <>
       <Header />
-      <Container style={{marginTop:'8vh', background:'#fff'}} >
+      <Container style={{marginTop:'9vh', background:'#fff'}} >
         
           <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 

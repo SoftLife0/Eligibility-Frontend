@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Form from './pages/Form';
+import Eligible from './pages/Eligible';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         {/* Define routes using Route component */}
         <Routes> {/* Use Routes to ensure only one route is rendered at a time */}
           <Route path="/" element={<Form />} /> {/* Use 'element' prop instead of children */}
+          <Route path="/eligible" element={<Eligible />} /> {/* Use 'element' prop instead of children */}
         </Routes>
       </div>
     </Router>
