@@ -1,10 +1,11 @@
 import React, { useState} from 'react';
 import Container from '@mui/material/Container'; 
 // import { Grid, TextField, MenuItem} from '@mui/material';
-import Info from './Info';
-import CoreSubjectField from './CoreSubjectField';
-import ElectiveSubjectField from './ElectiveSubjectField';
-import SubmitButton from './Button';
+import Info from '../components/Info';
+import CoreSubjectField from '../components/CoreSubjectField';
+import ElectiveSubjectField from '../components/ElectiveSubjectField';
+import SubmitButton from '../components/Button';
+import Header from '../components/Header';
 
 
 const Form = () => {
@@ -101,57 +102,61 @@ const Form = () => {
 
 
   return (
-    <Container style={{marginTop:'8vh', background:'#fff'}} >
-       
-        <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
-
-        {/* Render the Info component passing state variables and handlers */}
-        <Info 
-            name={name} 
-            number={number} 
-            selectedOption={selectedOption} 
-            handleNameChange={handleNameChange} 
-            handleNumberChange={handleNumberChange} 
-            handleOptionChange={handleOptionChange} 
-        />
-        {/* Other form elements can go here */}
+    <>
+      <Header />
+      <Container style={{marginTop:'8vh', background:'#fff'}} >
         
-        <div style={{marginTop:'8px'}}>
-            <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
-        </div>
+          <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 
-        {coreSubjects.map((subject, index) => (
-        <CoreSubjectField
-          key={index}
-          subject={subject.subject}
-          grade={subject.grade}
-          options={gradeOptions}
-          onGradeChange={(event) => handleGradeChange(index, event)}
-        />
-        ))}
+          {/* Render the Info component passing state variables and handlers */}
+          <Info 
+              name={name} 
+              number={number} 
+              selectedOption={selectedOption} 
+              handleNameChange={handleNameChange} 
+              handleNumberChange={handleNumberChange} 
+              handleOptionChange={handleOptionChange} 
+          />
+          {/* Other form elements can go here */}
+          
+          <div style={{marginTop:'8px'}}>
+              <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
+          </div>
 
-
-        <div style={{marginTop:'8px'}}>
-            <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
-            <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
-        </div>
-
-        {electiveSubjects.map((subject, index) => (
-            <ElectiveSubjectField
+          {coreSubjects.map((subject, index) => (
+          <CoreSubjectField
             key={index}
-            elective={subject.elective}
+            subject={subject.subject}
             grade={subject.grade}
-            gradeOptions={gradeOptions}
-            electiveOptions={electiveOptions} // Pass the options prop here
-            onElectiveChange={(event) => handleElectiveChange(index, event)}
-            onGradeChange={(event) => handleElectiveGradeChange(index, event)}
-        />
-        ))}
+            options={gradeOptions}
+            onGradeChange={(event) => handleGradeChange(index, event)}
+          />
+          ))}
 
-        {/* Render the SubmitButton component */}
-        <SubmitButton onClick={handleSubmit} text="Submit" />
 
-    </Container>
+          <div style={{marginTop:'8px'}}>
+              <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
+              <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
+          </div>
+
+          {electiveSubjects.map((subject, index) => (
+              <ElectiveSubjectField
+              key={index}
+              elective={subject.elective}
+              grade={subject.grade}
+              gradeOptions={gradeOptions}
+              electiveOptions={electiveOptions} // Pass the options prop here
+              onElectiveChange={(event) => handleElectiveChange(index, event)}
+              onGradeChange={(event) => handleElectiveGradeChange(index, event)}
+          />
+          ))}
+
+          {/* Render the SubmitButton component */}
+          <SubmitButton onClick={handleSubmit} text="Submit" />
+
+      </Container>
+    </>
+    
   )
 }
 

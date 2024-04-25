@@ -1,14 +1,18 @@
 import React from 'react'
-import Form from './components/Form'
-import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
+import Form from './pages/Form';
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Form />
-    </div>
+    <Router>
+      <div>
+        {/* Define routes using Route component */}
+        <Routes> {/* Use Routes to ensure only one route is rendered at a time */}
+          <Route path="/" element={<Form />} /> {/* Use 'element' prop instead of children */}
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
