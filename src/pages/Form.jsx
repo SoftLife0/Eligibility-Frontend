@@ -64,7 +64,8 @@ const Form = () => {
     ];
 
     const handleSubmit = () => {
-        // Prepare the data to be submitted
+      setLoading(true);
+      // Prepare the data to be submitted
         const formData = {
           name: name,
           number: number,
@@ -86,6 +87,7 @@ const Form = () => {
         })
         .then(response => {
           if (response.ok) {
+            setLoading(false);
             // Form submission successful, handle the response
             console.log('Form submitted successfully!');
           } else {
@@ -94,6 +96,7 @@ const Form = () => {
           }
         })
         .catch(error => {
+          setLoading(false);
           // Error occurred while sending the form data, handle the error
           console.error('Error submitting form:', error);
         });
@@ -154,6 +157,10 @@ const Form = () => {
           {/* Render the SubmitButton component */}
           <SubmitButton onClick={handleSubmit} text="Submit" />
 
+
+
+          {/* Loading Screen */}
+          {loading && <LoadingScreen message="Loading..." />}
       </Container>
     </>
     
