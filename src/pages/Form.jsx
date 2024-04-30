@@ -1,16 +1,18 @@
 import React, { useState} from 'react';
 import Container from '@mui/material/Container'; 
-// import { Grid, TextField, MenuItem} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Info from '../components/Info';
 import CoreSubjectField from '../components/CoreSubjectField';
 import ElectiveSubjectField from '../components/ElectiveSubjectField';
 import SubmitButton from '../components/Button';
 import Header from '../components/Header';
+import LoadingScreen from '../components/LoadingScreen';
 
 
 const Form = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const [loading, setLoading] = useState(false);
     const [selectedOption, setSelectedOption] = useState('');
     const [coreSubjects, setCoreSubjects] = useState([
         { subject: 'Mathematics', grade: 'None' },
@@ -26,6 +28,7 @@ const Form = () => {
         { elective: '', grade: 'None' },
     ]);
     
+    const navigate = useNavigate();
 
     const handleNameChange = (event) => {
         setName(event.target.value);
@@ -87,12 +90,13 @@ const Form = () => {
         })
         .then(response => {
           if (response.ok) {
-            setLoading(false);
-            // Form submission successful, handle the response
-            console.log('Form submitted successfully!');
+              setLoading(false);
+              // Form submission successful, navigate to /eligible
+              navigate.push('/eligible');
           } else {
-            // Form submission failed, handle the error
-            console.error('Form submission failed:', response.statusText);
+              // Form submission failed, handle the error
+              console.error('Form submission failed:', response.statusText);
+              setLoading(false); // Reset loading state
           }
         })
         .catch(error => {
@@ -107,7 +111,7 @@ const Form = () => {
   return (
     <>
       <Header />
-      <Container style={{marginTop:'9vh', background:'#fff'}} >
+      <Container style={{marginTop:'9vh', marginBottom:'5vh', background:'#fff'}} >
         
           <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 
@@ -159,9 +163,9 @@ const Form = () => {
 
 
 
+      </Container>
           {/* Loading Screen */}
           {loading && <LoadingScreen message="Loading..." />}
-      </Container>
     </>
     
   )

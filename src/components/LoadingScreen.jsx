@@ -6,7 +6,7 @@ function LoadingScreen({ message }) {
             <div>
                 <div style={{ width: '100%', textAlign: 'center' }}>
                     <div className="spinner-border m-5" style={{ width: '3rem', height: '3rem' }} role="status">
-                        <span className="sr-only"></span>
+                        {/* <span className="sr-only"></span> Remove this line */}
                     </div>
                     <h6 style={{ textAlign: 'center' }}>{message}</h6>
                 </div>
