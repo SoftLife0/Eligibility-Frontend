@@ -6,7 +6,7 @@ import CoreSubjectField from '../components/CoreSubjectField';
 import ElectiveSubjectField from '../components/ElectiveSubjectField';
 import SubmitButton from '../components/Button';
 import Header from '../components/Header';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 
 const Form = () => {
@@ -165,7 +165,7 @@ const Form = () => {
 
       </Container>
           {/* Loading Screen */}
-          {loading && <LoadingScreen message="Loading..." />}
+          {loading && <LoadingSpinner message="Loading..." />}
     </>
     
   )
