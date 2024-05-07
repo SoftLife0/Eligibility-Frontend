@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, MenuItem, TextField } from '@mui/material';
 
-const Info = ({ name, number, selectedOption, handleNameChange, handleNumberChange, handleOptionChange }) => {
+const Info = ({ name, number, handleNameChange, handleNumberChange }) => {
+    const [courses, setCourses] = useState([]);
+    const [selectedCourse, setSelectedCourse] = useState('');
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await fetch('https://forms.central.edu.gh/temp');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch courses');
+                }
+                const data = await response.json();
+                setCourses(data.courses); // Assuming your API returns courses in the format { courses: [...] }
+            } catch (error) {
+                console.error('Error fetching courses:', error);
+            }
+        };
+
+        fetchCourses();
+    }, []);
+
+    const handleCourseChange = (event) => {
+        setSelectedCourse(event.target.value);
+    };
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <div className="form-group">
                     <TextField
                         label="Enter your name"
-                        value={name} // Use the state variable as the value of the TextField
+                        value={name} 
                         fullWidth
                         margin="normal"
                         onChange={handleNameChange} 
@@ -19,7 +43,7 @@ const Info = ({ name, number, selectedOption, handleNameChange, handleNumberChan
                 <div className="form-group">
                     <TextField
                         label="Enter your number"
-                        value={number} // Use the state variable as the value of the TextField
+                        value={number} 
                         fullWidth
                         margin="normal"
                         onChange={handleNumberChange} 
@@ -31,17 +55,16 @@ const Info = ({ name, number, selectedOption, handleNameChange, handleNumberChan
                     <TextField
                         select
                         label="Which course did you offer"
-                        value={selectedOption}
+                        value={selectedCourse}
                         fullWidth
                         margin="normal"
-                        onChange={handleOptionChange}
+                        onChange={handleCourseChange}
                     >
-                        <MenuItem value="general-art">General Arts</MenuItem>
-                        <MenuItem value="science">Science</MenuItem>
-                        <MenuItem value="business">Business</MenuItem>
-                        <MenuItem value="visual-arts">Visual Arts</MenuItem>
-                        <MenuItem value="home-economics">Home Economics</MenuItem>
-                        <MenuItem value="agriculture">Agriculture</MenuItem>
+                        {courses.map(course => (
+                            <MenuItem key={course} value={course}>
+                                {course}
+                            </MenuItem>
+                        ))}
                     </TextField>
                 </div>
             </Grid>
