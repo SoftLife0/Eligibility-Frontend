@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, MenuItem } from '@mui/material';
 import FetchGrades from './FetchGrades'; // Import the FetchGrades component
 
-const CoreSubjectField = ({ onSelectGrade }) => {
+const CoreSubjectField = () => {
     const [coreSubjects, setCoreSubjects] = useState([]);
     const [selectedSubject, setSelectedSubject] = useState('');
     const [selectedGrade, setSelectedGrade] = useState('');
+    const [subjectGrades, setSubjectGrades] = useState([]);
 
     useEffect(() => {
         const fetchSubjects = async () => {
@@ -24,13 +25,32 @@ const CoreSubjectField = ({ onSelectGrade }) => {
         fetchSubjects();
     }, []);
 
+    useEffect(() => {
+        // Fetch grades for selected subject
+        const fetchGradesForSubject = async () => {
+            if (!selectedSubject) return; // No need to fetch if no subject is selected
+            try {
+                const response = await fetch(`https://forms.central.edu.gh/temp/${selectedSubject}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch grades');
+                }
+                const data = await response.json();
+                setSubjectGrades(data.grades);
+            } catch (error) {
+                console.error('Error fetching grades:', error);
+            }
+        };
+
+        fetchGradesForSubject();
+    }, [selectedSubject]);
+
     const handleSubjectChange = (event) => {
         setSelectedSubject(event.target.value);
     };
 
     const handleGradeSelect = (gradeId) => {
         setSelectedGrade(gradeId);
-        onSelectGrade(gradeId);
+        // onSelectGrade(gradeId); // This line seems redundant, as you're already setting the selected grade locally
     };
 
     return (
@@ -53,10 +73,8 @@ const CoreSubjectField = ({ onSelectGrade }) => {
             </Grid>
             <Grid item xs={6}>
                 <div className="form-group">
-                    <FetchGrades
-                        apiUrl="http://your-api-url-for-grades"
-                        onSelectGrade={handleGradeSelect}
-                    />
+                    {/* Pass the grades fetched for selected subject to FetchGrades */}
+                    <FetchGrades onSelectGrade={handleGradeSelect} grades={subjectGrades} />
                 </div>
             </Grid>
         </Grid>
