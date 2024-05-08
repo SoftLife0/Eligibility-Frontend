@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, MenuItem, TextField } from '@mui/material';
 
-const Info = ({ name, number, handleNameChange, handleNumberChange }) => {
+const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChange, handleCourseOffered }) => {
     const [courses, setCourses] = useState([]);
-    const [selectedCourse, setSelectedCourse] = useState('');
 
     useEffect(() => {
         const fetchCourses = async () => {
@@ -21,10 +20,6 @@ const Info = ({ name, number, handleNameChange, handleNumberChange }) => {
 
         fetchCourses();
     }, []);
-
-    const handleCourseChange = (event) => {
-        setSelectedCourse(event.target.value);
-    };
 
     return (
         <Grid container spacing={2}>
@@ -55,10 +50,10 @@ const Info = ({ name, number, handleNameChange, handleNumberChange }) => {
                     <TextField
                         select
                         label="Which course did you offer"
-                        value={selectedCourse}
+                        value={courseOffered}
                         fullWidth
                         margin="normal"
-                        onChange={handleCourseChange}
+                        onChange={handleCourseOffered}
                     >
                         {courses.map(course => (
                             <MenuItem key={course} value={course}>

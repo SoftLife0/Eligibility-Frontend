@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, MenuItem } from '@mui/material';
 import FetchGrades from './FetchGrades'; // Import the FetchGrades component
 
-const CoreSubjectField = () => {
+const CoreSubjectField = ({ subject, onGradeChange }) => {
     const [coreSubjects, setCoreSubjects] = useState([]);
     const [selectedSubject, setSelectedSubject] = useState('');
     const [selectedGrade, setSelectedGrade] = useState('');
@@ -25,7 +25,25 @@ const CoreSubjectField = () => {
         fetchSubjects();
     }, []);
 
+    useEffect(() => {
+        // Fetch grades for the selected subject
+        const fetchGrades = async () => {
+            try {
+                const response = await fetch(`https://forms.central.edu.gh/grades/${selectedSubject}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch grades');
+                }
+                const data = await response.json();
+                setSubjectGrades(data.grades);
+            } catch (error) {
+                console.error('Error fetching grades:', error);
+            }
+        };
 
+        if (selectedSubject) {
+            fetchGrades();
+        }
+    }, [selectedSubject]);
 
     const handleSubjectChange = (event) => {
         setSelectedSubject(event.target.value);
@@ -40,17 +58,15 @@ const CoreSubjectField = () => {
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <div className="form-group">
-                    <TextField
+                <TextField
                         select
                         label="Subject"
-                        value={selectedSubject}
+                        value={subject}
                         fullWidth
                         margin="normal"
-                        onChange={handleSubjectChange}
+                        disabled // Assuming subject is not editable
                     >
-                        {coreSubjects.map(coreSubject => (
-                            <MenuItem key={coreSubject} value={coreSubject}>{coreSubject}</MenuItem>
-                        ))}
+                        <MenuItem value={subject}>{subject}</MenuItem>
                     </TextField>
                 </div>
             </Grid>
@@ -63,5 +79,6 @@ const CoreSubjectField = () => {
         </Grid>
     );
 };
+
 
 export default CoreSubjectField;

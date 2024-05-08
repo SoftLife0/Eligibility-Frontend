@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container'; 
 import { useNavigate } from 'react-router-dom';
-import Info from '../components/Info';
+import Info from '../components/Info'; // Updated Info component import
 import CoreSubjectField from '../components/CoreSubjectField';
 import ElectiveSubjectField from '../components/ElectiveSubjectField';
 import SubmitButton from '../components/Button';
@@ -11,9 +11,10 @@ import LoadingSpinner from '../components/LoadingSpinner';
 const Form = () => {
     const [name, setName] = useState('');
     const [number, setNumber] = useState('');
+    const [courseOffered, setCourseOffered] = useState('');
     const [loading, setLoading] = useState(false);
     const [coreSubjects, setCoreSubjects] = useState([
-        { subject: 'Mathematics', grade: 'None' },
+        { subject: '', grade: '' },
         { subject: 'English', grade: 'None' },
         { subject: 'Science', grade: 'None' },
         { subject: 'Social Studies', grade: 'None' },
@@ -25,7 +26,7 @@ const Form = () => {
         { elective: '', grade: 'None' },
     ]);
 
-    const [selectedCourse, setSelectedCourse] = useState('');
+    const [responseData, setResponseData] = useState([])
 
     const navigate = useNavigate();
 
@@ -37,27 +38,18 @@ const Form = () => {
         setNumber(event.target.value);
     };
 
-    const handleCourseChange = (courseId) => {
-        setSelectedCourse(courseId);
+    const handleCourseOffered = (event) => {
+        setCourseOffered(event.target.value);
     };
 
-    const handleGradeChange = (index, event) => {
-      const newElectiveSubjects = [...electiveSubjects];
-      newElectiveSubjects[index].grade = event.target.value;
-      setElectiveSubjects(newElectiveSubjects);
-  };
-
-  const handleElectiveChange = (index, event) => {
-      const newElectiveSubjects = [...electiveSubjects];
-      newElectiveSubjects[index].elective = event.target.value;
-      setElectiveSubjects(newElectiveSubjects);
-  };
-
-  const handleElectiveGradeChange = (index, event) => {
-      const newElectiveSubjects = [...electiveSubjects];
-      newElectiveSubjects[index].grade = event.target.value;
-      setElectiveSubjects(newElectiveSubjects);
-  };
+    // Function to handle grade change for a specific core subject
+    const handleCoreSubjectGradeChange = (index, grade) => {
+        setCoreSubjects(prevCoreSubjects => {
+            const updatedCoreSubjects = [...prevCoreSubjects];
+            updatedCoreSubjects[index].grade = grade;
+            return updatedCoreSubjects;
+        });
+    };
 
     const handleSubmit = () => {
         setLoading(true);
@@ -65,32 +57,50 @@ const Form = () => {
         const formData = {
             name: name,
             number: number,
-            selectedCourse: selectedCourse,
-            coreSubjects: coreSubjects,
-            electiveSubjects: electiveSubjects
+            courseOffered: courseOffered,
+            "mathsScore":"A1",
+            "englishScore":"A1",
+            "scienceScore":"A1",
+            "socialScore":"A1",
+            "el1":"Biology",
+            "el1grade":"A1",
+            "el2":"Chemistry",
+            "el2grade":"A1",
+            "el3":"Physics",
+            "el3grade":"A1",
+            "el4":"E-Maths",
+            "el4grade":"A1"
         };
+
+        const sampleData = {
+
+        }
       
         // Example of logging the form data
         console.log('Form data:', formData);
       
         // Example of sending the form data to a server using fetch
-        fetch('http://172.188.12.230:5000/temp', {
+        fetch('https://api_eligibility.central.edu.gh/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
+                // 'Accept': 'application/json'
             },
             body: JSON.stringify(formData)
+
         })
         .then(response => {
             if (response.ok) {
-                setLoading(false);
-                // Form submission successful, navigate to /eligible
-                navigate.push('/eligible');
+                return response.json(); // Parse response body as JSON
             } else {
-                // Form submission failed, handle the error
-                console.error('Form submission failed:', response.statusText);
-                setLoading(false); // Reset loading state
+                throw new Error('Form submission failed:', response.statusText);
             }
+        })
+        .then(data => {
+            setLoading(false);
+            console.log("Response:", data);
+            setResponseData(data); // Set the response data
+            // Navigate or perform further actions based on the response
         })
         .catch(error => {
             setLoading(false);
@@ -106,15 +116,16 @@ const Form = () => {
             
                 <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 
-                {/* Render the Info component passing state variables and handlers */}
+                {/* Render the updated Info component */}
                 <Info 
                     name={name} 
                     number={number} 
-                    selectedCourse={selectedCourse}
+                    courseOffered={courseOffered}
                     handleNameChange={handleNameChange} 
                     handleNumberChange={handleNumberChange} 
-                    handleCourseChange={handleCourseChange} 
+                    handleCourseOffered={handleCourseOffered} 
                 />
+
                 
                 <div style={{marginTop:'8px'}}>
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
@@ -125,7 +136,7 @@ const Form = () => {
                         key={index}
                         subject={subject.subject}
                         grade={subject.grade}
-                        onGradeChange={(event) => handleGradeChange(index, event)}
+                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Pass the function to update the grade
                     />
                 ))}
 
@@ -137,9 +148,9 @@ const Form = () => {
                 {electiveSubjects.map((subject, index) => (
                     <ElectiveSubjectField
                         key={index}
-                        subject={subject.subject}
+                        subject={subject.elective} // Update to 'elective' instead of 'subject'
                         grade={subject.grade}
-                        onGradeChange={(event) => handleGradeChange(index, event)}
+                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Assuming you have a similar function for elective subjects
                     />
                 ))}
 
