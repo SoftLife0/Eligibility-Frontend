@@ -129,7 +129,7 @@ const Form = () => {
                     />
                 ))}
 
-                {/* <div style={{marginTop:'8px'}}>
+                <div style={{marginTop:'8px'}}>
                     <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
                 </div>
@@ -137,11 +137,11 @@ const Form = () => {
                 {electiveSubjects.map((subject, index) => (
                     <ElectiveSubjectField
                         key={index}
-                        index={index}
-                        onElectiveChange={handleElectiveChange}
-                        onGradeChange={handleElectiveGradeChange}
+                        subject={subject.subject}
+                        grade={subject.grade}
+                        onGradeChange={(event) => handleGradeChange(index, event)}
                     />
-                ))} */}
+                ))}
 
                 {/* Render the SubmitButton component */}
                 <SubmitButton onClick={handleSubmit} text="Submit" />

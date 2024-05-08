@@ -2,19 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Grid, TextField, MenuItem } from '@mui/material';
 import FetchGrades from './FetchGrades';
 
-const ElectiveSubjectField = ({ index, onElectiveChange, onGradeChange }) => {
-    const [electiveOptions, setElectiveOptions] = useState([]);
-    const [elective, setElective] = useState('');
+const ElectiveSubjectField = () => {
+    const [electiveSubjects, setElectiveSubjects] = useState([]);
+    const [selectedSubject, setSelectedSubject] = useState('');
+    const [selectedGrade, setSelectedGrade] = useState('');
+    const [subjectGrades, setSubjectGrades] = useState([]);
+
 
     useEffect(() => {
         const fetchElectiveOptions = async () => {
             try {
-                const electiveResponse = await fetch('http://a172.168.12.231:5000/temp');
-                if (!electiveResponse.ok) {
+                const response = await fetch('https://forms.central.edu.gh/temp');
+                if (!response.ok) {
                     throw new Error('Failed to fetch elective options');
                 }
-                const electiveData = await electiveResponse.json();
-                setElectiveOptions(electiveData.options);
+                const data = await response.json();
+                setElectiveSubjects(data.electiveSubjects);
             } catch (error) {
                 console.error('Error fetching elective options:', error);
             }
@@ -26,10 +29,13 @@ const ElectiveSubjectField = ({ index, onElectiveChange, onGradeChange }) => {
     }, []);
 
     const handleElectiveChange = (event) => {
-        setElective(event.target.value);
-        onElectiveChange(index, event);
+        setSelectedSubject(event.target.value);
     };
 
+    const handleGradeSelect = (gradeId) => {
+        setSelectedGrade(gradeId);
+        // onSelectGrade(gradeId); // This line seems redundant, as you're already setting the selected grade locally
+    };
 
     return (
         <Grid container spacing={2}>
@@ -37,22 +43,21 @@ const ElectiveSubjectField = ({ index, onElectiveChange, onGradeChange }) => {
                 <div className="form-group">
                     <TextField
                         select
-                        label="Elective"
-                        value={elective}
+                        label="Subject"
+                        value={selectedSubject}
                         fullWidth
                         margin="normal"
                         onChange={handleElectiveChange}
                     >
-                        {electiveOptions.map(option => (
-                            <MenuItem key={option} value={option}>{option}</MenuItem>
+                        {electiveSubjects.map(electiveSubject => (
+                            <MenuItem key={electiveSubject} value={electiveSubject}>{electiveSubject}</MenuItem>
                         ))}
                     </TextField>
                 </div>
             </Grid>
             <Grid item xs={6}>
                 <div className="form-group">
-                    {/* Render the FetchGrades component to fetch grade options */}
-                    <FetchGrades onSelectGrade={(gradeId) => onGradeChange(index, { target: { value: gradeId } })} />
+                    <FetchGrades onSelectGrade={handleGradeSelect} grades={subjectGrades} />
                 </div>
             </Grid>
         </Grid>

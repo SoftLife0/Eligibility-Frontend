@@ -25,24 +25,7 @@ const CoreSubjectField = () => {
         fetchSubjects();
     }, []);
 
-    useEffect(() => {
-        // Fetch grades for selected subject
-        const fetchGradesForSubject = async () => {
-            if (!selectedSubject) return; // No need to fetch if no subject is selected
-            try {
-                const response = await fetch(`https://forms.central.edu.gh/temp/${selectedSubject}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch grades');
-                }
-                const data = await response.json();
-                setSubjectGrades(data.grades);
-            } catch (error) {
-                console.error('Error fetching grades:', error);
-            }
-        };
 
-        fetchGradesForSubject();
-    }, [selectedSubject]);
 
     const handleSubjectChange = (event) => {
         setSelectedSubject(event.target.value);
