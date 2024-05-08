@@ -20,7 +20,9 @@ const Form = () => {
         'Social Studies': ''
     });
 
-    const [electiveSubjects, setElectiveSubjects] = useState([]);
+    const [electiveSubjects, setElectiveSubjects] = useState({
+
+    });
     const [electiveGrades, setElectiveGrades] = useState({});
 
     const [responseData, setResponseData] = useState([])
@@ -58,14 +60,14 @@ const Form = () => {
             englishScore: coreSubjects['English'],
             scienceScore: coreSubjects['Science'],
             socialScore: coreSubjects['Social Studies'],
-            el1: electiveGrades['Elective 1'],
-            el1grade: electiveGrades['Elective 1 Grade'],
-            el2: electiveGrades['Elective 2'],
-            el2grade: electiveGrades['Elective 2 Grade'],
-            el3: electiveGrades['Elective 3'],
-            el3grade: electiveGrades['Elective 3 Grade'],
-            el4: electiveGrades['Elective 4'],
-            el4grade: electiveGrades['Elective 4 Grade']
+            "el1":"Biology",
+            "el1grade":"A1",
+            "el2":"Chemistry",
+            "el2grade":"A1",
+            "el3":"Physics",
+            "el3grade":"A1",
+            "el4":"E-Maths",
+            "el4grade":"A1",
         };
       
         // Example of logging the form data
@@ -130,13 +132,14 @@ const Form = () => {
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
                 </div>
 
-                {electiveSubjects.map((subject, index) => (
+                {/* {electiveSubjects.map((subject, index) => (
                     <ElectiveSubjectField
                         key={index}
                         subject={subject.elective} // Update to 'elective' instead of 'subject'
                         grade={subject.grade}
+                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Assuming you have a similar function for elective subjects
                     />
-                ))}
+                ))} */}
 
                 {/* Render the SubmitButton component */}
                 <SubmitButton onClick={handleSubmit} text="Submit" />
