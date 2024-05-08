@@ -13,18 +13,15 @@ const Form = () => {
     const [number, setNumber] = useState('');
     const [courseOffered, setCourseOffered] = useState('');
     const [loading, setLoading] = useState(false);
-    const [coreSubjects, setCoreSubjects] = useState([
-        { subject: '', grade: '' },
-        { subject: 'English', grade: 'None' },
-        { subject: 'Science', grade: 'None' },
-        { subject: 'Social Studies', grade: 'None' },
-    ]);
-    const [electiveSubjects, setElectiveSubjects] = useState([
-        { elective: '', grade: 'None' },
-        { elective: '', grade: 'None' },
-        { elective: '', grade: 'None' },
-        { elective: '', grade: 'None' },
-    ]);
+    const [coreSubjects, setCoreSubjects] = useState({
+        Mathematics: '',
+        English: '',
+        Science: '',
+        'Social Studies': ''
+    });
+
+    const [electiveSubjects, setElectiveSubjects] = useState([]);
+    const [electiveGrades, setElectiveGrades] = useState({});
 
     const [responseData, setResponseData] = useState([])
 
@@ -42,13 +39,11 @@ const Form = () => {
         setCourseOffered(event.target.value);
     };
 
-    // Function to handle grade change for a specific core subject
-    const handleCoreSubjectGradeChange = (index, grade) => {
-        setCoreSubjects(prevCoreSubjects => {
-            const updatedCoreSubjects = [...prevCoreSubjects];
-            updatedCoreSubjects[index].grade = grade;
-            return updatedCoreSubjects;
-        });
+    const handleGradeSelect = (subject, grade) => {
+        setCoreSubjects(prevCoreSubjects => ({
+            ...prevCoreSubjects,
+            [subject]: grade
+        }));
     };
 
     const handleSubmit = () => {
@@ -58,23 +53,20 @@ const Form = () => {
             name: name,
             number: number,
             courseOffered: courseOffered,
-            "mathsScore":"A1",
-            "englishScore":"A1",
-            "scienceScore":"A1",
-            "socialScore":"A1",
-            "el1":"Biology",
-            "el1grade":"A1",
-            "el2":"Chemistry",
-            "el2grade":"A1",
-            "el3":"Physics",
-            "el3grade":"A1",
-            "el4":"E-Maths",
-            "el4grade":"A1"
+            Course: courseOffered,
+            mathsScore: coreSubjects['Mathematics'],
+            englishScore: coreSubjects['English'],
+            scienceScore: coreSubjects['Science'],
+            socialScore: coreSubjects['Social Studies'],
+            el1: electiveGrades['Elective 1'],
+            el1grade: electiveGrades['Elective 1 Grade'],
+            el2: electiveGrades['Elective 2'],
+            el2grade: electiveGrades['Elective 2 Grade'],
+            el3: electiveGrades['Elective 3'],
+            el3grade: electiveGrades['Elective 3 Grade'],
+            el4: electiveGrades['Elective 4'],
+            el4grade: electiveGrades['Elective 4 Grade']
         };
-
-        const sampleData = {
-
-        }
       
         // Example of logging the form data
         console.log('Form data:', formData);
@@ -84,7 +76,6 @@ const Form = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Accept': 'application/json'
             },
             body: JSON.stringify(formData)
 
@@ -131,14 +122,8 @@ const Form = () => {
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
                 </div>
 
-                {coreSubjects.map((subject, index) => (
-                    <CoreSubjectField
-                        key={index}
-                        subject={subject.subject}
-                        grade={subject.grade}
-                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Pass the function to update the grade
-                    />
-                ))}
+                <CoreSubjectField coreSubjects={coreSubjects} onGradeSelect={handleGradeSelect} />
+
 
                 <div style={{marginTop:'8px'}}>
                     <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
@@ -150,7 +135,6 @@ const Form = () => {
                         key={index}
                         subject={subject.elective} // Update to 'elective' instead of 'subject'
                         grade={subject.grade}
-                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Assuming you have a similar function for elective subjects
                     />
                 ))}
 
