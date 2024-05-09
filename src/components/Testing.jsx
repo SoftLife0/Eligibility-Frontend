@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, MenuItem } from '@mui/material';
 
 const FetchGrades = ({ onSelectGrade }) => {
-    const [grades, setGrades] = useState([]);
+    const [electiveSubjects, setElectiveSubjects] = useState([]);
     const [selectedGrade, setSelectedGrade] = useState('');
 
     useEffect(() => {
@@ -13,7 +13,7 @@ const FetchGrades = ({ onSelectGrade }) => {
                     throw new Error('Failed to fetch grades');
                 }
                 const data = await response.json();
-                setGrades(data.grades);
+                setElectiveSubjects(data.electiveSubjects);
             } catch (error) {
                 console.error('Error fetching grades:', error);
             }
@@ -37,9 +37,9 @@ const FetchGrades = ({ onSelectGrade }) => {
             margin="normal"
             onChange={handleGradeSelect}
         >
-            {grades.map(grade => (
-                <MenuItem key={grade} value={grade}>
-                    {grade}
+            {electiveSubjects.map(electiveSubjects => (
+                <MenuItem key={electiveSubjects} value={electiveSubjects}>
+                    {electiveSubjects}
                 </MenuItem>
             ))}
         </TextField>

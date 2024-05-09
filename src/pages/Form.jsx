@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Container from '@mui/material/Container'; 
+import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
-import Info from '../components/Info'; // Updated Info component import
+import Info from '../components/Info';
 import CoreSubjectField from '../components/CoreSubjectField';
 import ElectiveSubjectField from '../components/ElectiveSubjectField';
 import SubmitButton from '../components/Button';
@@ -19,14 +19,20 @@ const Form = () => {
         Science: '',
         'Social Studies': ''
     });
-
-    const [electiveSubjects, setElectiveSubjects] = useState({
-
+    // State for elective subjects and grades
+    const [electives, setElectives] = useState({
+        'First Elective': '',
+        'Second Elective': '',
+        'Third Elective': '',
+        'Fourth Elective': ''
     });
-    const [electiveGrades, setElectiveGrades] = useState({});
-
-    const [responseData, setResponseData] = useState([])
-
+    const [electiveGrades, setElectiveGrades] = useState({
+        'First Elective Grade': '',
+        'Second Elective Grade': '',
+        'Third Elective Grade': '',
+        'Fourth Elective Grade': ''
+    });
+    const [responseData, setResponseData] = useState([]);
     const navigate = useNavigate();
 
     const handleNameChange = (event) => {
@@ -60,19 +66,19 @@ const Form = () => {
             englishScore: coreSubjects['English'],
             scienceScore: coreSubjects['Science'],
             socialScore: coreSubjects['Social Studies'],
-            "el1":"Biology",
-            "el1grade":"A1",
-            "el2":"Chemistry",
-            "el2grade":"A1",
-            "el3":"Physics",
-            "el3grade":"A1",
-            "el4":"E-Maths",
-            "el4grade":"A1",
+            el1: electives['First Elective'],
+            el1grade: electiveGrades['First Elective Grade'],
+            el2: electives['Second Elective'],
+            el2grade: electiveGrades['Second Elective Grade'],
+            el3: electives['Third Elective'],
+            el3grade: electiveGrades['Third Elective Grade'],
+            el4: electives['Fourth Elective'],
+            el4grade: electiveGrades['Fourth Elective Grade']
         };
-      
+
         // Example of logging the form data
         console.log('Form data:', formData);
-      
+
         // Example of sending the form data to a server using fetch
         fetch('https://api_eligibility.central.edu.gh/', {
             method: 'POST',
@@ -80,7 +86,6 @@ const Form = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formData)
-
         })
         .then(response => {
             if (response.ok) {
@@ -106,10 +111,8 @@ const Form = () => {
         <>
             <Header />
             <Container style={{marginTop:'9vh', marginBottom:'5vh', background:'#fff'}} >
-            
                 <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
 
-                {/* Render the updated Info component */}
                 <Info 
                     name={name} 
                     number={number} 
@@ -119,29 +122,39 @@ const Form = () => {
                     handleCourseOffered={handleCourseOffered} 
                 />
 
-                
                 <div style={{marginTop:'8px'}}>
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
                 </div>
 
                 <CoreSubjectField coreSubjects={coreSubjects} onGradeSelect={handleGradeSelect} />
 
-
                 <div style={{marginTop:'8px'}}>
                     <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
                 </div>
 
-                {/* {electiveSubjects.map((subject, index) => (
-                    <ElectiveSubjectField
-                        key={index}
-                        subject={subject.elective} // Update to 'elective' instead of 'subject'
-                        grade={subject.grade}
-                        onGradeChange={(grade) => handleCoreSubjectGradeChange(index, grade)} // Assuming you have a similar function for elective subjects
-                    />
-                ))} */}
+                {/* Pass handlers to ElectiveSubjectField */}
+                <ElectiveSubjectField
+                    electives={electives}
+                    onElectiveChange={(elective) => setElectives({ ...electives, 'First Elective': elective })}
+                    onGradeSelect={(grade) => setElectiveGrades({ ...electiveGrades, 'First Elective Grade': grade })}
+                />
+                <ElectiveSubjectField
+                    electives={electives}
+                    onElectiveChange={(elective) => setElectives({ ...electives, 'Second Elective': elective })}
+                    onGradeSelect={(grade) => setElectiveGrades({ ...electiveGrades, 'Second Elective Grade': grade })}
+                />
+                <ElectiveSubjectField
+                    electives={electives}
+                    onElectiveChange={(elective) => setElectives({ ...electives, 'Third Elective': elective })}
+                    onGradeSelect={(grade) => setElectiveGrades({ ...electiveGrades, 'Third Elective Grade': grade })}
+                />
+                <ElectiveSubjectField
+                    electives={electives}
+                    onElectiveChange={(elective) => setElectives({ ...electives, 'Fourth Elective': elective })}
+                    onGradeSelect={(grade) => setElectiveGrades({ ...electiveGrades, 'Fourth Elective Grade': grade })}
+                />
 
-                {/* Render the SubmitButton component */}
                 <SubmitButton onClick={handleSubmit} text="Submit" />
             </Container>
             
