@@ -41,7 +41,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
                 <div className="form-group">
                     <TextField
                         select
-                        label="Subject"
+                        label="Elective Subject"
                         value={selectedSubject}
                         fullWidth
                         margin="normal"
