@@ -4,3 +4,13 @@ body {
     background: #fff;
     font-family: 'SF UI Display Bold', sans-serif;
 }
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .avatar {
+    animation: rotate 15s linear infinite; 
+    transform-origin: center;
+  }

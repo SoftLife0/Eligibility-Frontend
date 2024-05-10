@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Form from './pages/Form';
 import Eligible from './pages/Eligible';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <div>
         {/* Define routes using Route component */}
         <Routes> {/* Use Routes to ensure only one route is rendered at a time */}
-          <Route path="/" element={<Form />} /> {/* Use 'element' prop instead of children */}
+          <Route path="/form" element={<Form />} /> {/* Use 'element' prop instead of children */}
           <Route path="/eligible" element={<Eligible />} /> {/* Use 'element' prop instead of children */}
+          <Route path="/" element={<Home />} /> {/* Use 'element' prop instead of children */}
         </Routes>
       </div>
     </Router>
