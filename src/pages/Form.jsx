@@ -32,7 +32,8 @@ const Form = () => {
         'Third Elective Grade': '',
         'Fourth Elective Grade': ''
     });
-    // const [responseData, setResponseData] = useState([]);
+
+
     const navigate = useNavigate();
 
     const handleNameChange = (event) => {
@@ -96,11 +97,7 @@ const Form = () => {
         })
         .then(data => {
             setLoading(false);
-            console.log("Response:", data);
-            // setResponseData(data);
-
-            // Log data before navigating
-            console.log('Data before navigating:', data);
+            console.log('Response:', data);
 
             // Navigate or perform further actions based on the response
             navigate('/eligible', { state: { data: data } });

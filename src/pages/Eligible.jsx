@@ -11,23 +11,23 @@ const Eligible = () => {
 
     // Log the received data
     console.log('Received data:', data);
+    console.log('Name:', data.data.name);
+    console.log('EligibleCourses:', data.data.eligibleCourses);
 
-    // Check if data exists and if it has the eligibleCourses property
-    const eligibleCourses = data && data.eligibleCourses ? data.eligibleCourses : [];
-
+    const eligibleCourses = data.data.eligibleCourses ? data.data.eligibleCourses : [];
+    const name = data.data.name ? data.data.name : '';
 
     return (
         <>
-            <Layout name="Nana Kweku"/>
+            <Layout name={name}/>
             <Container style={{marginTop:'20vh'}}>
+
                 {/* Check if eligibleCourses is not empty */}
                 {eligibleCourses.length > 0 ? (
-                    // Map over eligibleCourses and render CustomCard for each course
-                    eligibleCourses.map((course, index) => (
-                        <CustomCard key={index} course={course.name} department={course.department} />
+                    eligibleCourses.map(eligibleCourse => (
+                        <CustomCard key={eligibleCourse.name} department={eligibleCourse.department} name={eligibleCourse.name} />
                     ))
                 ) : (
-                    // Render a message if eligibleCourses is empty
                     <p>No eligible courses available</p>
                 )}
             </Container>
