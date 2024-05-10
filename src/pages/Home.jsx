@@ -2,8 +2,16 @@ import { Container, Avatar } from '@mui/material';
 import React from 'react'
 import logo from '../img/hero.png'
 import SubmitButton from '../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  const handleBeginClick = () => {
+    navigate('/form');
+  };
+
   return (
     <>
       <Container style={{marginTop:'10vh'}}>
@@ -21,7 +29,7 @@ const Home = () => {
             <h4>Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant</h4>
           </div>
 
-          <SubmitButton text="Begin" />
+          <SubmitButton text="Begin" onClick={handleBeginClick}/>
         </div>
       </Container>
     </>

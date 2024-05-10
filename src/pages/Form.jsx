@@ -114,7 +114,7 @@ const Form = () => {
             <Header />
             <Container style={{marginTop:'9vh', marginBottom:'5vh', background:'#fff'}} >
                 <div style={{marginTop:'8px'}}>
-                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Personal Data</h4>
+                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'600'}}> Personal Data</h4>
                 </div>
                 <Info 
                     name={name} 
@@ -127,14 +127,14 @@ const Form = () => {
 
                 <div style={{marginTop:'8px'}}>
                     <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
-                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
+                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'600'}}>Core Subjects</h4>
                 </div>
 
                 <CoreSubjectField coreSubjects={coreSubjects} onGradeSelect={handleGradeSelect} />
 
                 <div style={{marginTop:'8px'}}>
                     <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
-                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Elective Subjects</h4>
+                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'600'}}>Elective Subjects</h4>
                 </div>
 
                 {/* Pass handlers to ElectiveSubjectField */}
