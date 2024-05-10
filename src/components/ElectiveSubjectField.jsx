@@ -37,7 +37,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
 
     return (
         <Grid container spacing={2}>
-            <Grid item xs={6}>
+            <Grid item xs={8}>
                 <div className="form-group">
                     <TextField
                         select
@@ -53,7 +53,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
                     </TextField>
                 </div>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={4}>
                 <div className="form-group">
                     <FetchGrades
                         onSelectGrade={grade => handleGradeSelect(grade)}

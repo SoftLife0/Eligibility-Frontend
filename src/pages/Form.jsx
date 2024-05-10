@@ -113,8 +113,9 @@ const Form = () => {
         <>
             <Header />
             <Container style={{marginTop:'9vh', marginBottom:'5vh', background:'#fff'}} >
-                <h6 className="text-muted" style={{fontSize:'18px', margin:'5px 0', fontWeight:'500'}}><b>Note:</b> Please fill the form with the details from your slip</h6>
-
+                <div style={{marginTop:'8px'}}>
+                    <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Personal Data</h4>
+                </div>
                 <Info 
                     name={name} 
                     number={number} 
@@ -125,6 +126,7 @@ const Form = () => {
                 />
 
                 <div style={{marginTop:'8px'}}>
+                    <h6 style={{fontSize:'1rem', margin:'5px 0', fontWeight:'500'}}>Please fill the form with the details from your slip</h6>
                     <h4 style={{fontSize:'1.5rem', margin:'8px 0', fontWeight:'500'}}>Core Subjects</h4>
                 </div>
 

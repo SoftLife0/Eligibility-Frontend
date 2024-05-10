@@ -14,7 +14,7 @@ const CustomCard = ({ department, name, link }) => {
                 <CardContent>
                     <div>
                         <small>{department}</small>
-                        <h2 style={{ marginBottom: '0' }}>{name}</h2>
+                        <h3 style={{ marginBottom: '0' }}>{name}</h3>
                     </div>
                 </CardContent>
             </Card>

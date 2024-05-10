@@ -19,18 +19,19 @@ const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
         <Grid container spacing={2}>
             {Object.entries(coreSubjects).map(([subject, value], index) => (
                 <React.Fragment key={index}>
-                    <Grid item xs={6}>
+                    <Grid item xs={8}>
                         <div className="form-group">
                             <TextField
-                                label={subject}
+                                // label={subject}
                                 value={subject}
                                 fullWidth
                                 margin="normal"
                                 disabled
+                                style={{background:'#e9ecef'}}
                             />
                         </div>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={4}>
                         <div className="form-group">
                             <FetchGrades
                                 onSelectGrade={grade => handleGradeSelect(subject, grade)}

@@ -3,9 +3,11 @@ import {Button} from '@mui/material';
 
 const SubmitButton = ({ onClick, text }) => {
   return (
-    <Button variant="contained" onClick={onClick} style={{textAlign:'center', width:'100%', margin:'4vh 0', background:'#dc3545'}}>
-      {text}
-    </Button>
+    <div style={{textAlign:'center'}}>
+      <Button  onClick={onClick} style={{width:'50%', padding:'10px ', borderRadius:'8px', margin:'4vh 0', background:'#DE2121'}}>
+        <b>{text}</b>
+      </Button>
+    </div>
   );
 };
 
