@@ -8,6 +8,12 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  const headingStyle = {
+    fontFamily: 'SF UI Display, sans-serif',
+    letterSpacing: '0.07em',
+    fontWeight: '600',
+  };
+
   const handleBeginClick = () => {
     navigate('/form');
   };
@@ -25,8 +31,8 @@ const Home = () => {
           </div>
 
           <div>
-            <h2>Your Artificial Intelligence Assistant</h2>
-            <h4>Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant Your Artificial Intelligence Assistant</h4>
+            <h2>Artificial Intelligence Assistant</h2>
+            <h4 style={headingStyle}>Welcome to CU Program Eligibility Checker, an innovative tool designed to streamline the process of determining various school programs. Powered by Artificial Intelligence Technology</h4>
           </div>
 
           <SubmitButton text="Begin" onClick={handleBeginClick}/>
