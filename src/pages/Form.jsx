@@ -81,7 +81,7 @@ const Form = () => {
         console.log('Form data:', formData);
 
         // Example of sending the form data to a server using fetch
-        fetch('https://api_eligibility.central.edu.gh/', {
+        fetch('https://forms.central.edu.gh/eligibility', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

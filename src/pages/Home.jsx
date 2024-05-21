@@ -9,9 +9,16 @@ const Home = () => {
   const navigate = useNavigate();
 
   const headingStyle = {
-    fontFamily: 'SF UI Display, sans-serif',
+    fontFamily: 'Poppins, sans-serif',
     letterSpacing: '0.07em',
-    fontWeight: '600',
+    fontWeight: '500',
+  };
+  
+  const headingStyle1 = {
+    fontFamily: 'Poppins, sans-serif',
+    letterSpacing: '0.06em',
+    fontSize: '22px',
+    fontWeight: '700',
   };
 
   const handleBeginClick = () => {
@@ -23,7 +30,7 @@ const Home = () => {
       <Container style={{marginTop:'10vh'}}>
         <div style={{textAlign:'center'}}>
 
-          <h3>eligibility.ai</h3>
+          <h3 style={headingStyle}>eligibility.ai</h3>
           {/* <hr /> */}
 
           <div style={{margin: '8vh 0'}}>
@@ -31,7 +38,7 @@ const Home = () => {
           </div>
 
           <div>
-            <h2>Artificial Intelligence Assistant</h2>
+            <h3 style={headingStyle1}>Artificial Intelligence Assistant</h3>
             <h4 style={headingStyle}>Welcome to CU Program Eligibility Checker, an innovative tool designed to streamline the process of determining various school programs. Powered by Artificial Intelligence Technology</h4>
           </div>
 

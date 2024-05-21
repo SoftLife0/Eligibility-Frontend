@@ -19,7 +19,7 @@ const CustomCard = ({ department, name, link }) => {
 
     return (
         <StyledLink to={link}>
-            <Card sx={{ padding: '20px', backgroundColor: '#5635dc2d', marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
+            <Card sx={{ padding: '20px', backgroundColor: 'rgba(0, 0, 0, 0.3)', marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
                 <CardContent>
                     <div style={cardStyles}>
                         <small style={{ fontSize:'16px', margin:'0'}}>{department}</small>

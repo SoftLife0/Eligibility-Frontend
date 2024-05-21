@@ -7,7 +7,7 @@ const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChang
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('https://forms.central.edu.gh/temp');
+                const response = await fetch('https://forms.central.edu.gh/eligibility');
                 if (!response.ok) {
                     throw new Error('Failed to fetch courses');
                 }
