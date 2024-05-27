@@ -17,6 +17,7 @@ const Eligible = () => {
     const eligibleCourses = data.data.eligibleCourses ? data.data.eligibleCourses : [];
     const name = data.data.name ? data.data.name : '';
 
+   
     return (
         <>
             <Layout name={name}/>

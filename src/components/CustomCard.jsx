@@ -9,9 +9,22 @@ const CustomCard = ({ department, name, link }) => {
     });
 
     const cardStyles = {
-        fontFamily: 'SF UI Display, sans-serif',
-        letterSpacing: '0.05em',
+        fontFamily: 'Poppins, sans-serif',
+        letterSpacing: '0.04em',
+        fontSize:'16px',
+        margin:'0', 
+        fontWeight:'600'
     }
+    
+      const subHeading = {
+        fontSize:'22px', 
+        fontFamily: 'Poppins, sans-serif',
+        letterSpacing: '0.04em',
+        margin:'5px 0',
+        fontWeight:'600',
+        marginBottom: '0'
+      }
+
 
     // const backgroundColors = ['#5635dc2d', '#ff5733', '#36c9a8', '#ffc300', '#7a57d1'];
 
@@ -19,11 +32,11 @@ const CustomCard = ({ department, name, link }) => {
 
     return (
         <StyledLink to={link}>
-            <Card sx={{ padding: '20px', backgroundColor: 'rgba(0, 0, 0, 0.3)', marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
+            <Card sx={{ padding: '20px', backgroundColor: '#5635dc2d', marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
                 <CardContent>
-                    <div style={cardStyles}>
-                        <small style={{ fontSize:'16px', margin:'0'}}>{department}</small>
-                        <h3 style={{ fontSize:'20px', marginBottom: '0' }}>{name}</h3>
+                    <div>
+                        <small style={cardStyles}>{department}</small>
+                        <h3  style={subHeading}>{name}</h3>
                     </div>
                 </CardContent>
             </Card>
