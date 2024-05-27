@@ -7,6 +7,8 @@ import ElectiveSubjectField from '../components/ElectiveSubjectField';
 import SubmitButton from '../components/Button';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
+import config from '../components/config';
+
 
 const Form = () => {
     const [name, setName] = useState('');
@@ -81,7 +83,7 @@ const Form = () => {
         console.log('Form data:', formData);
 
         // Example of sending the form data to a server using fetch
-        fetch('https://forms.central.edu.gh/eligibility', {
+        fetch(`${config.apiBaseUrl}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

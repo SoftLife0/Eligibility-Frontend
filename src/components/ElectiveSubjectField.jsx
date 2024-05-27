@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, TextField, MenuItem } from '@mui/material';
 import FetchGrades from './FetchGrades';
+import config from './config';
+
 
 const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) => {
     const [electiveSubjects, setElectiveSubjects] = useState([]);
@@ -10,7 +12,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
     useEffect(() => {
         const fetchElectiveOptions = async () => {
             try {
-                const response = await fetch('https://forms.central.edu.gh/eligibility');
+                const response = await fetch(`${config.apiBaseUrl}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch elective options');
                 }

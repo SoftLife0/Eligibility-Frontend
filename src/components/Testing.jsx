@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, MenuItem } from '@mui/material';
+import config from './config';
 
 const FetchGrades = ({ onSelectGrade }) => {
     const [electiveSubjects, setElectiveSubjects] = useState([]);
@@ -8,7 +9,7 @@ const FetchGrades = ({ onSelectGrade }) => {
     useEffect(() => {
         const fetchGrades = async () => {
             try {
-                const response = await fetch('https://forms.central.edu.gh/eligibility');
+                const response = await fetch(`${config.apiBaseUrl}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch grades');
                 }

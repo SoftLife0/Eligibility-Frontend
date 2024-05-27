@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, MenuItem, TextField } from '@mui/material';
+import config from './config';
 
 const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChange, handleCourseOffered }) => {
     const [courses, setCourses] = useState([]);
@@ -7,7 +8,7 @@ const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChang
     useEffect(() => {
         const fetchCourses = async () => {
             try {
-                const response = await fetch('https://forms.central.edu.gh/eligibility');
+                const response = await fetch(`${config.apiBaseUrl}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch courses');
                 }
