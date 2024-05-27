@@ -8,7 +8,7 @@ const FetchGrades = ({ onSelectGrade }) => {
     useEffect(() => {
         const fetchGrades = async () => {
             try {
-                const response = await fetch('https://api_eligibility.central.edu.gh/');
+                const response = await fetch('https://forms.central.edu.gh/eligibility');
                 if (!response.ok) {
                     throw new Error('Failed to fetch grades');
                 }
