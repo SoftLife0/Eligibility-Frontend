@@ -10,16 +10,16 @@ const CustomCard = ({ department, name, link, color }) => {
 
     const cardStyles = {
         fontFamily: 'Poppins, sans-serif',
-        letterSpacing: '0.04em',
+        letterSpacing: '0.03em',
         fontSize:'16px',
         margin:'0', 
         fontWeight:'600'
     }
     
       const subHeading = {
-        fontSize:'22px', 
+        fontSize:'25px', 
         fontFamily: 'Poppins, sans-serif',
-        letterSpacing: '0.04em',
+        letterSpacing: '0.03em',
         margin:'5px 0',
         fontWeight:'600',
         marginBottom: '0'

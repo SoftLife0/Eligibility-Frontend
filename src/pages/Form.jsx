@@ -196,7 +196,7 @@ const Form = () => {
             onGradeSelect={(grade) => handleElectiveGradeChange('Fourth Elective Grade', grade)}
           />
             
-            <SubmitButton type="submit" text="Generate Possible Program" />
+            <SubmitButton type="submit" text="Generate Possible Programs" />
 
         </form>
       </Container>

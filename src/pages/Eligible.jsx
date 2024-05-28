@@ -20,7 +20,7 @@ const Eligible = () => {
     return (
         <>
             <Layout name={name}/>
-            <Container style={{ marginTop: '25vh' }}>
+            <Container style={{ marginTop: '25vh', height:'100vh' }}>
 
                 {/* Check if eligibleCourses is not empty */}
                 {data ? (
