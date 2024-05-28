@@ -48,6 +48,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
                         fullWidth
                         margin="normal"
                         onChange={handleElectiveSelect}
+                        required
                     >
                         {electiveSubjects.map(electiveSubject => (
                             <MenuItem key={electiveSubject} value={electiveSubject}>{electiveSubject}</MenuItem>

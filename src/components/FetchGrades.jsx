@@ -37,6 +37,7 @@ const FetchGrades = ({ onSelectGrade }) => {
             fullWidth
             margin="normal"
             onChange={handleGradeSelect}
+            required
         >
             {grades.map(grade => (
                 <MenuItem key={grade} value={grade}>

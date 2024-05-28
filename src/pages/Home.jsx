@@ -1,6 +1,6 @@
 import { Container, Avatar } from '@mui/material';
 import React from 'react'
-import logo from '../img/hero.png'
+import logo from '../img/globe.png'
 import SubmitButton from '../components/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,7 +38,6 @@ const Home = () => {
         <div style={{textAlign:'center'}}>
 
           <h3 style={headingStyle2}>eligibility.ai</h3>
-          {/* <hr /> */}
 
           <div style={{margin: '8vh 0'}}>
             <Avatar src={logo} sx={{ width: 300, height: 300 }} style={{margin:'0 auto'}}  className="avatar"/>
