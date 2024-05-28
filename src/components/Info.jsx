@@ -5,6 +5,7 @@ import config from './config';
 const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChange, handleCourseOffered }) => {
     const [courses, setCourses] = useState([]);
 
+
     useEffect(() => {
         const fetchCourses = async () => {
             try {
@@ -26,13 +27,14 @@ const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChang
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <div className="form-group">
-                    <TextField
-                        label="Enter your name"
-                        value={name} 
-                        fullWidth
-                        margin="normal"
-                        onChange={handleNameChange} 
-                    />
+                <TextField
+                    label="Enter your name"
+                    value={name}
+                    fullWidth
+                    margin="normal"
+                    onChange={handleNameChange}
+                    required
+                />
                 </div>
             </Grid>
             <Grid item xs={6}>
@@ -43,6 +45,7 @@ const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChang
                         fullWidth
                         margin="normal"
                         onChange={handleNumberChange} 
+                        required
                     />
                 </div>
             </Grid>
@@ -55,6 +58,7 @@ const Info = ({ name, number, courseOffered, handleNameChange, handleNumberChang
                         fullWidth
                         margin="normal"
                         onChange={handleCourseOffered}
+                        required
                     >
                         {courses.map(course => (
                             <MenuItem key={course} value={course}>
