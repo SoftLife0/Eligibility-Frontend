@@ -23,12 +23,14 @@ const Eligible = () => {
             <Container style={{ marginTop: '25vh' }}>
 
                 {/* Check if eligibleCourses is not empty */}
-                {eligibleCourses.length > 0 ? (
-                    eligibleCourses.map(eligibleCourse => (
-                        <CustomCard key={eligibleCourse.name} department={eligibleCourse.department} name={eligibleCourse.name} />
-                    ))
-                ) : data ? (
-                    <p>No eligible courses available</p>
+                {data ? (
+                    eligibleCourses.length > 0 ? (
+                        eligibleCourses.map(eligibleCourse => (
+                            <CustomCard key={eligibleCourse.name} department={eligibleCourse.department} name={eligibleCourse.name} color={eligibleCourse.color} />
+                        ))
+                    ) : (
+                        <p>No eligible courses available</p>
+                    )
                 ) : (
                     <p>Loading...</p>
                 )}

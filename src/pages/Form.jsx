@@ -149,7 +149,7 @@ const Form = () => {
   return (
     <>
       <Header />
-      <Container style={{ marginTop: '9vh', marginBottom: '5vh', background: '#fff' }}>
+      <Container style={{ paddingTop: '9vh', marginBottom: '5vh', background: '#fff', height:'100vh'}}>
         <form onSubmit={handleSubmit}>
           <div style={{ marginTop: '8px' }}>
             <h4 style={headingStyle}>Personal Data</h4>

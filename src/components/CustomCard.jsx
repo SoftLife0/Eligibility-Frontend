@@ -2,7 +2,7 @@ import React from 'react';
 import { styled, Card, CardContent } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const CustomCard = ({ department, name, link }) => {
+const CustomCard = ({ department, name, link, color }) => {
     const StyledLink = styled(Link)({
         color: 'inherit',
         textDecoration: 'none',
@@ -26,13 +26,9 @@ const CustomCard = ({ department, name, link }) => {
       }
 
 
-    // const backgroundColors = ['#5635dc2d', '#ff5733', '#36c9a8', '#ffc300', '#7a57d1'];
-
-    // const backgroundColor = index < 5 ? backgroundColors[index] : backgroundColors[0];
-
     return (
         <StyledLink to={link}>
-            <Card sx={{ padding: '20px', backgroundColor: '#5635dc2d', marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
+            <Card sx={{ padding: '20px', color:'#fff', backgroundColor: color, marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
                 <CardContent>
                     <div>
                         <small style={cardStyles}>{department}</small>
