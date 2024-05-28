@@ -4,7 +4,6 @@ const Header = () => {
 
   const headingStyle1 = {
     fontFamily: 'Poppins, sans-serif',
-    letterSpacing: '0.03em',
     fontSize: '20px',
     fontWeight: '600',
     textDecoration: 'none',

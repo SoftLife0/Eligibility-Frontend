@@ -40,6 +40,23 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
     return (
         <Grid container spacing={2}>
             <Grid item xs={8}>
+                {/* <div className="form-control">
+                    <label htmlFor="elective" className="form-label">Select Elective</label>
+                    <select 
+                    className="answerSelectCard" 
+                    id="elective" 
+                    name="elective" 
+                    required
+                    value={selectedSubject}
+                    onChange={handleElectiveSelect} 
+                    >
+                    {electiveSubjects.map(electiveSubject => (
+                        <option key={electiveSubject} value={electiveSubject}>
+                        {electiveSubject}
+                        </option>
+                    ))}
+                    </select>
+                </div> */}
                 <div className="form-group">
                     <TextField
                         select
@@ -55,6 +72,7 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
                         ))}
                     </TextField>
                 </div>
+
             </Grid>
             <Grid item xs={4}>
                 <div className="form-group">

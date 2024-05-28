@@ -15,11 +15,28 @@ const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
         onGradeSelect(subject, grade);
     };
 
+    const grid = {
+        paddingTop: '0'
+    }
+
     return (
         <Grid container spacing={2}>
             {Object.entries(coreSubjects).map(([subject, value], index) => (
                 <React.Fragment key={index}>
-                    <Grid item xs={8}>
+                    <Grid item xs={8} style={grid}>
+                        {/* <div className="form-control">
+                            <label htmlFor="subject" className="form-label">Subject</label>
+                            <input 
+                            className="answerSelectCard" 
+                            id="subject" 
+                            name="subject" 
+                            placeholder="subject" 
+                            type="text"
+                            disabled
+                            fullWidth
+                            value={subject}
+                            />
+                        </div> */}
                         <div className="form-group">
                             <TextField
                                 // label={subject}
@@ -31,7 +48,7 @@ const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
                             />
                         </div>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={4} style={grid}>
                         <div className="form-group">
                             <FetchGrades
                                 onSelectGrade={grade => handleGradeSelect(subject, grade)}

@@ -12,6 +12,7 @@ import SubmitButton from '../components/Button';
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
   const [courseOffered, setCourseOffered] = useState('');
   const [loading, setLoading] = useState(false);
   const [coreSubjects, setCoreSubjects] = useState({
@@ -41,6 +42,10 @@ const Form = () => {
 
   const handleNumberChange = (event) => {
     setNumber(event.target.value);
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handleCourseOfferedChange = (event) => {
@@ -82,6 +87,7 @@ const Form = () => {
     const formData = {
       name,
       number,
+      email,
       courseOffered,
       Course: courseOffered,
       mathsScore: coreSubjects['Mathematics'],
@@ -132,17 +138,17 @@ const Form = () => {
 
   const headingStyle = {
     fontFamily: 'Poppins, sans-serif',
-    letterSpacing: '0.03em',
     fontSize: '22px',
-    margin: '8px 0',
+    margin: '0',
     fontWeight: '600'
   };
 
   const subHeading = {
     fontSize: '16px',
     fontFamily: 'Poppins, sans-serif',
-    margin: '5px 0',
-    fontWeight: '500'
+    margin: '0',
+    fontWeight: '500',
+    opacity: '0.5'
   };
 
  
@@ -151,28 +157,31 @@ const Form = () => {
       <Header />
       <Container style={{ paddingTop: '9vh', marginBottom: '5vh', background: '#fff', height:'100vh'}}>
         <form onSubmit={handleSubmit}>
-          <div style={{ marginTop: '8px' }}>
+          <div style={{ marginTop: '8px', marginBottom: '20px' }}>
             <h4 style={headingStyle}>Personal Data</h4>
+            <h6 style={subHeading}>Please provide your information as this will help us to get in touch with you.</h6>
           </div>
           <Info
             name={name}
             number={number}
+            email={email}
             courseOffered={courseOffered}
             handleNameChange={handleNameChange}
             handleNumberChange={handleNumberChange}
+            handleEmailChange={handleEmailChange}
             handleCourseOffered={handleCourseOfferedChange}
           />
 
-          <div style={{ marginTop: '8px' }}>
-            <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
+          <div style={{ marginTop: '8px', marginBottom: '20px' }}>
             <h4 style={headingStyle}>Core Subjects</h4>
+            <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
           </div>
 
           <CoreSubjectField coreSubjects={coreSubjects} onGradeSelect={handleCoreGradeSelect} />
 
           <div style={{ marginTop: '8px' }}>
-            <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
             <h4 style={headingStyle}>Elective Subjects</h4>
+            <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
           </div>
 
           <ElectiveSubjectField
