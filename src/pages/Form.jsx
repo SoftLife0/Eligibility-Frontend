@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Info from '../components/Info';
 import CoreSubjectField from '../components/CoreSubjectField';
 import ElectiveSubjectField from '../components/ElectiveSubjectField';
-import SubmitButton from '../components/Button';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 import config from '../components/config';
+import SubmitButton from '../components/Button';
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -145,6 +145,7 @@ const Form = () => {
     fontWeight: '500'
   };
 
+ 
   return (
     <>
       <Header />
@@ -194,8 +195,9 @@ const Form = () => {
             onElectiveChange={(elective) => handleElectiveChange('Fourth Elective', elective)}
             onGradeSelect={(grade) => handleElectiveGradeChange('Fourth Elective Grade', grade)}
           />
+            
+            <SubmitButton type="submit" text="Generate Possible Program" />
 
-          <SubmitButton text="Submit" />
         </form>
       </Container>
 

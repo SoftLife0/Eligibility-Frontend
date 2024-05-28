@@ -21,6 +21,13 @@ const Home = () => {
     fontWeight: '700',
   };
 
+  const headingStyle2 = {
+    fontFamily: 'Poppins, sans-serif',
+    letterSpacing: '0.04em',
+    fontSize: '20px',
+    fontWeight: '600',
+  };
+
   const handleBeginClick = () => {
     navigate('/form');
   };
@@ -30,7 +37,7 @@ const Home = () => {
       <Container style={{marginTop:'10vh'}}>
         <div style={{textAlign:'center'}}>
 
-          <h3 style={headingStyle}>eligibility.ai</h3>
+          <h3 style={headingStyle2}>eligibility.ai</h3>
           {/* <hr /> */}
 
           <div style={{margin: '8vh 0'}}>
