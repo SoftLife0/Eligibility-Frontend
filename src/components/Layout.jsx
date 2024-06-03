@@ -4,8 +4,7 @@ const Layout = ({name}) => {
 
   const headingStyle = {
     fontFamily: 'Poppins, sans-serif',
-    letterSpacing: '0.04em',
-    fontWeight:'700',
+    fontWeight:'600',
     textDecoration: 'none',
     color: '#fff', 
     fontSize: '20px', 
@@ -13,7 +12,6 @@ const Layout = ({name}) => {
 
   const subHeading = {
     fontSize:'16px', 
-    letterSpacing: '0.05em',
     fontFamily: 'Poppins, sans-serif',
     margin:'5px 0',
     fontWeight:'500',
@@ -26,7 +24,7 @@ const Layout = ({name}) => {
         <a className="navbar-brand" href="/" style={headingStyle}>Eligiblity Checker</a>
 
         <div style={subHeading}>
-          <h2>Congratulations <span> {name}</span></h2>
+          <h3 style={{fontSize:'18px'}}>Congratulations <span> {name}</span></h3>
           <small style={{fontSize:'16px'}}>You are eligible for the following courses. Pick one to start your application process</small>
         </div>
       </header>

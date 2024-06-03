@@ -4,6 +4,7 @@ import './App.css'
 import Form from './pages/Form';
 import Eligible from './pages/Eligible';
 import Home from './pages/Home';
+import Ineligible from './pages/Ineligible';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/form" element={<Form />} /> {/* Use 'element' prop instead of children */}
           <Route path="/eligible" element={<Eligible />} /> {/* Use 'element' prop instead of children */}
           <Route path="/" element={<Home />} /> {/* Use 'element' prop instead of children */}
+          <Route path="/ineligible" element={<Ineligible />} /> {/* Use 'element' prop instead of children */}
         </Routes>
       </div>
     </Router>

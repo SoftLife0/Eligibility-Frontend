@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container } from '@mui/material';
 import CustomCard from '../components/CustomCard';
+import Ineligible from './Ineligible';
 
 const Eligible = () => {
     const location = useLocation();
@@ -44,7 +45,7 @@ const Eligible = () => {
                             </>
                         ) : (
                             <>
-                                <h2 style={{ marginTop: '0', marginBottom: '3px' }}>Sorry <span>{name}</span></h2>
+                                <h2 style={{ marginTop: '0', marginBottom: '3px' }}>Unfortunately <span>{name}</span></h2>
                                 <small style={{ fontSize: '16px' }}>You didn't pass the eligibility criteria for any courses. Please try again later or contact support for more information.</small>
                             </>
                         )}
@@ -59,7 +60,8 @@ const Eligible = () => {
                             <CustomCard key={eligibleCourse.name} department={eligibleCourse.department} name={eligibleCourse.name} color={eligibleCourse.color} />
                         ))
                     ) : (
-                        <p>No eligible courses available</p>
+                        <Ineligible/>
+                        // <p>No eligible courses available</p>
                     )
                 ) : (
                     <p>Loading...</p>
