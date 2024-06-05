@@ -10,16 +10,15 @@ const CustomCard = ({ department, name, link, color }) => {
 
     const cardStyles = {
         fontFamily: 'Poppins, sans-serif',
-        letterSpacing: '0.03em',
-        fontSize:'16px',
+        fontSize:'12px',
         margin:'0', 
-        fontWeight:'600'
+        fontWeight:'300',
+        opacity: '0.5'
     }
     
       const subHeading = {
-        fontSize:'25px', 
+        fontSize:'16px', 
         fontFamily: 'Poppins, sans-serif',
-        letterSpacing: '0.03em',
         margin:'5px 0',
         fontWeight:'600',
         marginBottom: '0'
@@ -28,7 +27,7 @@ const CustomCard = ({ department, name, link, color }) => {
 
     return (
         <StyledLink to={link}>
-            <Card sx={{ padding: '20px', color:'#fff', backgroundColor: color, marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
+            <Card sx={{ padding: '16px', color:'#fff', backgroundColor: color, marginBottom: '20px', boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.1)', borderRadius: '10px', border: 'none' }}>
                 <CardContent>
                     <div>
                         <small style={cardStyles}>{department}</small>

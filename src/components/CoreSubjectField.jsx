@@ -45,6 +45,8 @@ const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
                                 margin="normal"
                                 disabled
                                 style={{background:'#e9ecef'}}
+                                size="small"
+
                             />
                         </div>
                     </Grid>

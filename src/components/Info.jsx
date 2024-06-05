@@ -55,6 +55,8 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                         onChange={handleNameChange} 
                         required
                         style={{paddingTop:'0'}}
+                        size="small"
+
                     />
                 </div>
             </Grid>
@@ -82,6 +84,7 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                         margin="normal"
                         onChange={handleNumberChange} 
                         required
+                        size="small"
                     />
                 </div>
             </Grid>
@@ -109,6 +112,8 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                         margin="normal"
                         onChange={handleEmailChange} 
                         required
+                        size="small"
+
                     />
                 </div>
             </Grid>
@@ -139,6 +144,8 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                         margin="normal"
                         onChange={handleCourseOffered}
                         required
+                        size="small"
+
                     >
                         {courses.map(course => (
                             <MenuItem key={course} value={course}>

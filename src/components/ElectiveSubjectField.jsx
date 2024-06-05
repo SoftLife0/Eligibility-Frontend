@@ -66,6 +66,8 @@ const ElectiveSubjectField = ({ electives, onElectiveChange, onGradeSelect }) =>
                         margin="normal"
                         onChange={handleElectiveSelect}
                         required
+                        size="small"
+
                     >
                         {electiveSubjects.map(electiveSubject => (
                             <MenuItem key={electiveSubject} value={electiveSubject}>{electiveSubject}</MenuItem>

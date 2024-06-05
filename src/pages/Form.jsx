@@ -138,13 +138,13 @@ const Form = () => {
 
   const headingStyle = {
     fontFamily: 'Poppins, sans-serif',
-    fontSize: '22px',
+    fontSize: '16px',
     margin: '0',
     fontWeight: '600'
   };
 
   const subHeading = {
-    fontSize: '16px',
+    fontSize: '14px',
     fontFamily: 'Poppins, sans-serif',
     margin: '0',
     fontWeight: '500',
@@ -155,7 +155,7 @@ const Form = () => {
   return (
     <>
       <Header />
-      <Container style={{ paddingTop: '9vh', marginBottom: '5vh', background: '#fff', height:'100vh'}}>
+      <Container style={{ paddingTop: '9vh', marginBottom: '5vh', background: '#fff'}}>
         <form onSubmit={handleSubmit}>
           <div style={{ marginTop: '8px', marginBottom: '20px' }}>
             <h4 style={headingStyle}>Personal Data</h4>
