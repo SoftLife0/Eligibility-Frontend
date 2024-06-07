@@ -13,7 +13,7 @@ const CustomCard = ({ department, name, link, color }) => {
         fontSize:'12px',
         margin:'0', 
         fontWeight:'300',
-        opacity: '0.5'
+        // opacity: '0.5'
     }
     
       const subHeading = {

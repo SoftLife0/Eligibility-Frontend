@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Container } from '@mui/material';
 import CustomCard from '../components/CustomCard';
+import EligibilityHeader from '../components/EligibilityHeader';
 import Ineligible from './Ineligible';
 
 const Eligible = () => {
@@ -24,7 +25,7 @@ const Eligible = () => {
     };
 
     const subHeading = {
-        fontSize:'16px', 
+        fontSize:'17px', 
         fontFamily: 'Poppins, sans-serif',
         margin:'5px 0',
         fontWeight:'600',
@@ -33,28 +34,15 @@ const Eligible = () => {
       }
 
     return (
-        <>
-            <div style={{ position: 'fixed', width: '100%', height: 'auto', zIndex: '100', top: '0', backgroundColor: 'red', borderBottom: '1px solid #dc3545' }}>
-                <header className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '16px 25px' }}>
-                    <a className="navbar-brand" href="/" style={headingStyle}>eligibility.ai</a>
-                    
-                    <div style={subHeading}>
-                        {isEligible ? (
-                            <>
-                                <h2 style={{ fontSize:'16px', fontWeight:'600', marginTop: '0', marginBottom: '3px' }}>Congratulations <span>{name}</span></h2>
-                                <small style={{fontWeight:'300', fontSize: '16px' }}>You are eligible for the following courses. Pick one to start your application process</small>
-                            </>
-                        ) : (
-                            <>
-                                <h2 style={{ marginTop: '0', marginBottom: '3px' }}>Unfortunately <span>{name}</span></h2>
-                                <small style={{ fontSize: '16px' }}>You didn't pass the eligibility criteria for any courses. Please try again later or contact support for more information.</small>
-                            </>
-                        )}
-                    </div>
-                </header>
-            </div>
+        <>  
+            <EligibilityHeader
+            isEligible={isEligible}
+            name={name}
+            headingStyle={headingStyle}
+            subHeading={subHeading}
 
-            <Container style={{ paddingTop: '25vh', height: '100vh' }}>
+            />
+            <Container style={{ paddingTop: '18vh', paddingBottom:'8vh', height: '100vh' }}>
                 {data ? (
                     isEligible ? (
                         eligibleCourses.map(eligibleCourse => (

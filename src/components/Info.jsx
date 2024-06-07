@@ -30,7 +30,7 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
     return (
         <Grid container spacing={2}>
             
-            <Grid item xs={6} style={grid}>
+            <Grid item xs={12} style={grid}>
                 {/* <div className="form-control">
                     <label htmlFor="name" className="form-label">Enter your Full Name</label>
                     <input 
@@ -60,7 +60,7 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                     />
                 </div>
             </Grid>
-            <Grid item xs={6} style={grid}>
+            <Grid item xs={12} style={grid}>
                 {/* <div className="form-control">
                     <label htmlFor="number" className="form-label">Enter your number</label>
                     <input 

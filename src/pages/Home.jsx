@@ -21,7 +21,7 @@ const Home = () => {
 
   const headingStyle2 = {
     fontFamily: 'Poppins, sans-serif',
-    fontSize: '20px',
+    fontSize: '18px',
     fontWeight: '600',
   };
 
