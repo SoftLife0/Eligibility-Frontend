@@ -10,7 +10,7 @@ const CustomCard = ({ department, name, link, color }) => {
 
     const cardStyles = {
         fontFamily: 'Poppins, sans-serif',
-        fontSize:'12px',
+        fontSize:'13px',
         margin:'0', 
         fontWeight:'300',
         // opacity: '0.5'

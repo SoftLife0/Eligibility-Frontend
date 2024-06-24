@@ -42,19 +42,25 @@ const Eligible = () => {
             subHeading={subHeading}
 
             />
-            <Container style={{ paddingTop: '18vh', paddingBottom:'8vh', height: '100vh' }}>
+            <Container style={{ paddingTop: '20vh', height: '100vh' }}>
                 {data ? (
                     isEligible ? (
                         eligibleCourses.map(eligibleCourse => (
-                            <CustomCard key={eligibleCourse.name} department={eligibleCourse.department} name={eligibleCourse.name} color={eligibleCourse.color} />
+                            <CustomCard
+                                key={eligibleCourse.name}
+                                department={eligibleCourse.department}
+                                name={eligibleCourse.name}
+                                color={eligibleCourse.color}
+                                link={eligibleCourse.link}
+                            />
                         ))
                     ) : (
-                        <Ineligible/>
-                        // <p>No eligible courses available</p>
+                        <Ineligible />
                     )
                 ) : (
-                    <p>Loading...</p>
+                    <Ineligible />
                 )}
+                <br />
             </Container>
         </>
     );

@@ -34,6 +34,7 @@ const Form = () => {
     'Fourth Elective Grade': ''
   });
 
+  // const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleNameChange = (event) => {
@@ -76,6 +77,7 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent default form submission
     setLoading(true);
+    // setError(null);
 
     // Basic validation
     if (!name || !number || !courseOffered) {
@@ -131,7 +133,7 @@ const Form = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // Error occurred while sending the form data, handle the error
+        // setError('Error submitting form:' + error.message); //Set error state
         console.error('Error submitting form:', error);
       });
   };
@@ -205,8 +207,8 @@ const Form = () => {
             onGradeSelect={(grade) => handleElectiveGradeChange('Fourth Elective Grade', grade)}
           />
             
+            {/* {error && <div className="error-message">{error}</div>} Display error message */}
             <SubmitButton type="submit" text="Generate Possible Programs" />
-
         </form>
       </Container>
 
