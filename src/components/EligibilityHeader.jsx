@@ -19,7 +19,7 @@ const EligibilityHeader = ({isEligible, name, subHeading, headingStyle}) => {
   // }
 
   return (
-    <div style={{ position: 'fixed', width: '100%', height: 'auto', zIndex: '100', top: '0', backgroundColor: 'red', borderBottom: '1px solid #dc3545' }}>
+    <div style={{ position: 'fixed', width: '100%', height: 'auto', zIndex: '100', top: '0', backgroundColor: '#DE2121', borderBottom: '1px solid #dc3545' }}>
         <header className="navbar navbar-expand-lg navbar-light bg-light" style={{ padding: '16px 25px' }}>
             <a className="navbar-brand" href="/" style={headingStyle}>eligibility.ai</a>
             
