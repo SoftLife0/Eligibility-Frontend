@@ -106,6 +106,7 @@ const Form = () => {
       el4grade: electiveGrades['Fourth Elective Grade']
     };
 
+    
     // Example of logging the form data
     console.log('Form data:', formData);
 

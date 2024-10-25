@@ -14,6 +14,8 @@ const FetchGrades = ({ onSelectGrade }) => {
                     throw new Error('Failed to fetch grades');
                 }
                 const data = await response.json();
+                console.log("data.grades");
+                console.log(data.grades);
                 setGrades(data.grades);
             } catch (error) {
                 console.error('Error fetching grades:', error);
