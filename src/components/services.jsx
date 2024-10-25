@@ -44,7 +44,7 @@ class ApiService {
     }
   }
 
-  async submitFormData(formData) {
+  async submitForm(formData) {
     try {
       const response = await fetch(`${config.apiBaseUrl}`, {
         method: 'POST',

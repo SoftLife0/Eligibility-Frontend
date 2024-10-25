@@ -1,52 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Grid, TextField, MenuItem } from '@mui/material';
-import config from './config';
 
-const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumberChange, handleCourseOffered, handleEmailChange }) => {
-    const [courses, setCourses] = useState([]);
-
-
-    useEffect(() => {
-        const fetchCourses = async () => {
-            try {
-                const response = await fetch(`${config.apiBaseUrl}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch courses');
-                }
-                const data = await response.json();
-                setCourses(data.courses); // Assuming your API returns courses in the format { courses: [...] }
-            } catch (error) {
-                console.error('Error fetching courses:', error);
-            }
-        };
-
-        fetchCourses();
-    }, []);
+const Info = ({ name, number, email, courseOffered, courses, handleNameChange, handleNumberChange, handleCourseOffered, handleEmailChange }) => {
 
     const grid = {
         paddingTop: '0'
     }
 
-    
-    
 
     return (
         <Grid container spacing={2}>
             
             <Grid item xs={12} style={grid}>
-                {/* <div className="form-control">
-                    <label htmlFor="name" className="form-label">Enter your Full Name</label>
-                    <input 
-                    className="answerSelectCard" 
-                    id="name" 
-                    name="Name" 
-                    placeholder="Name" 
-                    type="text"
-                    required 
-                    value={name}
-                    onChange={handleNameChange}
-                    />
-                </div> */}
                 <div className="form-group">
                     <TextField
                         label="Full Name"
@@ -64,19 +29,6 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                 </div>
             </Grid>
             <Grid item xs={12} style={grid}>
-                {/* <div className="form-control">
-                    <label htmlFor="number" className="form-label">Enter your number</label>
-                    <input 
-                    className="answerSelectCard" 
-                    id="number" 
-                    name="Number" 
-                    placeholder="0244500300" 
-                    type="text"
-                    required 
-                    value={number}
-                    onChange={handleNumberChange}
-                    />
-                </div> */}
                 <div className="form-group">
                     <TextField
                         label="Phone number"
@@ -92,19 +44,6 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                 </div>
             </Grid>
             <Grid item xs={12} style={grid}>
-                {/* <div className="form-control">
-                    <label htmlFor="number" className="form-label">Enter your Email Address</label>
-                    <input 
-                    className="answerSelectCard" 
-                    id="email" 
-                    name="Email" 
-                    placeholder="john@gmail.com" 
-                    type="email"
-                    required 
-                    value={email}
-                    onChange={handleEmailChange}
-                    />
-                </div> */}
                 <div className="form-group">
                     <TextField
                         label="Email Address"
@@ -121,42 +60,22 @@ const Info = ({ name, number, email, courseOffered, handleNameChange, handleNumb
                 </div>
             </Grid>
             <Grid item xs={12} style={grid}>
-            {/* <div className="form-control">
-                    <label htmlFor="course" className="form-label">Which course did you offer</label>
-                    <select 
-                    className="answerSelectCard" 
-                    id="course" 
-                    name="course" 
-                    required
+                <TextField
+                    select
+                    label="Which course did you offer"
                     value={courseOffered}
-                    onChange={handleCourseOffered} 
-                    >
-                    {courses.map(course => (
-                        <option key={course} value={course}>
-                        {course}
-                        </option>
+                    fullWidth
+                    margin="normal"
+                    onChange={handleCourseOffered}
+                    required
+                    size="small"
+                >
+                    {courses.map((course) => (
+                        <MenuItem key={course} value={course}>
+                            {course}
+                        </MenuItem>
                     ))}
-                    </select>
-                </div> */}
-                <div className="form-group">
-                    <TextField
-                        select
-                        label="Which course did you offer"
-                        value={courseOffered}
-                        fullWidth
-                        margin="normal"
-                        onChange={handleCourseOffered}
-                        required
-                        size="small"
-
-                    >
-                        {courses.map(course => (
-                            <MenuItem key={course} value={course}>
-                                {course}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                </div>
+                </TextField>
             </Grid>
         </Grid>
     );

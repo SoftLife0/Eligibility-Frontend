@@ -9,11 +9,15 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import config from '../components/config';
 import SubmitButton from '../components/Button';
 
+
+
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [courseOffered, setCourseOffered] = useState('');
+
+  // Loading screen state
   const [loading, setLoading] = useState(false);
   const [coreSubjects, setCoreSubjects] = useState({
     Mathematics: '',

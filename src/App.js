@@ -6,6 +6,7 @@ import Eligible from './pages/Eligible';
 import Home from './pages/Home';
 import Ineligible from './pages/Ineligible';
 import TestForm from './pages/TestForm';
+import Prod from './pages/prod';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/eligible" element={<Eligible />} /> {/* Use 'element' prop instead of children */}
           <Route path="/" element={<Home />} /> {/* Use 'element' prop instead of children */}
           <Route path="/ineligible" element={<Ineligible />} /> {/* Use 'element' prop instead of children */}
+          <Route path="/prod" element={<Prod />} /> {/* Use 'element' prop instead of children */}
         </Routes>
       </div>
     </Router>
