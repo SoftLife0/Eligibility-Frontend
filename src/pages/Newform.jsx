@@ -8,7 +8,6 @@ import Header from '../components/Header';
 import LoadingSpinner from '../components/LoadingSpinner';
 import SubmitButton from '../components/Button';
 import ApiService from '../components/services';
-import ElectiveSubjects from '../components/AllElective';
 
 
 
@@ -183,7 +182,7 @@ const Newform = () => {
             <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
         </div>
 
-        <ElectiveSubjects electiveSubjects={electiveSubjects} electives={electives} grades={grades} handleElectiveChange={handleElectiveChange}/>
+        <ElectiveSubjectField electiveSubjects={electiveSubjects} electives={electives} grades={grades} handleElectiveChange={handleElectiveChange}/>
 
         <SubmitButton type="submit" text="Generate Possible Programs" />
 

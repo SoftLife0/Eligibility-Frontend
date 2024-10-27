@@ -9,7 +9,7 @@ class ApiService {
         throw new Error('Failed to fetch grades');
       }
       const data = await response.json();
-      return data.grades; // Return only the grades array
+      return data.grades;
     } catch (error) {
       console.error('Error fetching grades:', error);
       return null;
@@ -57,6 +57,7 @@ class ApiService {
         throw new Error(`Form submission failed: ${response.statusText}`);
     }
 
+    console.log("Response Body", response)
     return response.json();
   }
 }
