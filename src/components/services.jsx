@@ -45,24 +45,19 @@ class ApiService {
   }
 
   async submitForm(formData) {
-    try {
-      const response = await fetch(`${config.apiBaseUrl}`, {
+    const response = await fetch(`${config.apiBaseUrl}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-      const data = await response.json();
-      console.log('Form submitted successfully!', data);
-      return data;
-    } catch (error) {
-      console.error('Error submitting form data:', error);
-      return null;
+    });
+
+    if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.statusText}`);
     }
+
+    return response.json();
   }
 }
 

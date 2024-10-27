@@ -1,42 +1,45 @@
 import React from 'react';
+import { Grid, TextField, MenuItem } from '@mui/material';
+import FetchGrades from './FetchGrades';
 
 const AllElective = ({ electiveSubjects, electives, grades, handleElectiveChange }) => {
     return (
         <div>
             <h2>Elective Subjects</h2>
-            {electiveSubjects.map((elective, index) => (
-                <div key={index}>
-                    <label>Elective</label>
-                    <select
-                        name="elective"
-                        value={elective.elective}
-                        onChange={(e) => handleElectiveChange(index, e)}
-                        required
-                    >
-                        <option value="">Select an elective</option>
-                        {electives.map((course) => (
-                            <option key={course} value={course}>
-                                {course}
-                            </option>
-                        ))}
-                    </select>
-
-                    <label>Grade:</label>
-                    <select
-                        name="grade"
-                        value={elective.grade}
-                        onChange={(e) => handleElectiveChange(index, e)}
-                        required
-                    >
-                        <option value="">Select grade</option>
-                        {grades.map((grade) => (
-                            <option key={grade} value={grade}>
-                                {grade}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            ))}
+            <Grid container spacing={2}>
+                {electiveSubjects.map((elective, index) => (
+                    <React.Fragment key={index}>
+                        <Grid item xs={8}>
+                            <TextField
+                                select
+                                label="Elective"
+                                name="elective"
+                                value={elective.elective}
+                                onChange={(e) => handleElectiveChange(index, e)}
+                                fullWidth
+                                required
+                                size="small"
+                                margin="normal"
+                            >
+                                <MenuItem value="">Select an elective</MenuItem>
+                                {electives.map((course) => (
+                                    <MenuItem key={course} value={course}>
+                                        {course}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <FetchGrades
+                                onSelectGrade={(selectedGrade) => 
+                                    handleElectiveChange(index, { target: { name: 'grade', value: selectedGrade } })
+                                }
+                                grades={grades}
+                            />
+                        </Grid>
+                    </React.Fragment>
+                ))}
+            </Grid>
         </div>
     );
 };

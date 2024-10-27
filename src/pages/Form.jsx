@@ -9,16 +9,13 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import config from '../components/config';
 import SubmitButton from '../components/Button';
 
-
-
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [courseOffered, setCourseOffered] = useState('');
-
-  // Loading screen state
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [coreSubjects, setCoreSubjects] = useState({
     Mathematics: '',
     English: '',
@@ -110,7 +107,6 @@ const Form = () => {
       el4grade: electiveGrades['Fourth Elective Grade']
     };
 
-    
     // Example of logging the form data
     console.log('Form data:', formData);
 
@@ -124,7 +120,7 @@ const Form = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json(); // Parse response body as JSON
+          return response.json(); 
         } else {
           throw new Error(`Form submission failed: ${response.statusText}`);
         }
@@ -138,7 +134,7 @@ const Form = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // setError('Error submitting form:' + error.message); //Set error state
+        setError('Error submitting form:' + error.message);
         console.error('Error submitting form:', error);
       });
   };
@@ -165,6 +161,7 @@ const Form = () => {
       <Header />
       <Container style={{ paddingTop: '9vh', marginBottom: '5vh', background: '#fff'}}>
         <form onSubmit={handleSubmit}>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <div style={{ marginTop: '8px', marginBottom: '20px' }}>
             <h4 style={headingStyle}>Personal Data</h4>
             <h6 style={subHeading}>Please provide your information as this will help us to get in touch with you.</h6>
@@ -213,7 +210,6 @@ const Form = () => {
             onGradeSelect={(grade) => handleElectiveGradeChange('Fourth Elective Grade', grade)}
           />
             
-            {/* {error && <div className="error-message">{error}</div>} Display error message */}
             <SubmitButton type="submit" text="Generate Possible Programs" />
         </form>
       </Container>

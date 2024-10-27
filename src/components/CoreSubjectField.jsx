@@ -1,52 +1,40 @@
 import React from 'react';
-import { Grid, TextField, MenuItem, Select } from '@mui/material';
+import { Grid, TextField } from '@mui/material';
+import FetchGrades from './FetchGrades';
 
-const CoreSubjectField = ({ coreSubjects, grades, handleCoreSubjectChange }) => {
-    const coreSubjectNames = ['Mathematics', 'English', 'Science', 'Social Studies'];
+const CoreSubjectField = ({ coreSubjects, onGradeSelect, grades }) => {
+
+    const grid = {
+        paddingTop: '0'
+    }
 
     return (
-        <div>
-            <h2>Core Subjects</h2>
-            <Grid container spacing={2}>
-                {coreSubjectNames.map((subject) => (
-                    <React.Fragment key={subject}>
-                        {/* Subject Name Grid (Width 8) */}
-                        <Grid item xs={8}>
+        <Grid container spacing={2}>
+            {Object.entries(coreSubjects).map(([subject, value], index) => (
+                <React.Fragment key={index}>
+                    <Grid item xs={8} style={grid}>
+                        <div className="form-group">
                             <TextField
-                                label={subject}
-                                name={subject}
-                                value={coreSubjects[subject]}
+                                value={subject}
                                 fullWidth
                                 margin="normal"
                                 disabled
                                 style={{ background: '#e9ecef' }}
                                 size="small"
                             />
-                        </Grid>
-                        {/* Grade Selection Grid (Width 4) */}
-                        <Grid item xs={4}>
-                            <Select
-                                name={subject}
-                                value={coreSubjects[subject] || ''} // Use empty string if value is undefined
-                                onChange={handleCoreSubjectChange}
-                                fullWidth
-                                displayEmpty
-                                size="small"
-                            >
-                                <MenuItem value="" disabled>
-                                    Select Grade
-                                </MenuItem>
-                                {grades.map((grade) => (
-                                    <MenuItem key={grade} value={grade}>
-                                        {grade}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </React.Fragment>
-                ))}
-            </Grid>
-        </div>
+                        </div>
+                    </Grid>
+                    <Grid item xs={4} style={grid}>
+                        <div className="form-group">
+                            <FetchGrades
+                                onSelectGrade={selectedGrade => onGradeSelect(subject, selectedGrade)}
+                                grades={grades}
+                            />
+                        </div>
+                    </Grid>
+                </React.Fragment>
+            ))}
+        </Grid>
     );
 };
 

@@ -7,7 +7,6 @@ const Info = ({ name, number, email, courseOffered, courses, handleNameChange, h
         paddingTop: '0'
     }
 
-
     return (
         <Grid container spacing={2}>
             
@@ -60,22 +59,25 @@ const Info = ({ name, number, email, courseOffered, courses, handleNameChange, h
                 </div>
             </Grid>
             <Grid item xs={12} style={grid}>
-                <TextField
-                    select
-                    label="Which course did you offer"
-                    value={courseOffered}
-                    fullWidth
-                    margin="normal"
-                    onChange={handleCourseOffered}
-                    required
-                    size="small"
-                >
-                    {courses.map((course) => (
-                        <MenuItem key={course} value={course}>
-                            {course}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                <div className="form-group">
+                    <TextField
+                        select
+                        label="Which course did you offer"
+                        value={courseOffered}
+                        fullWidth
+                        margin="normal"
+                        onChange={handleCourseOffered}
+                        required
+                        size="small"
+
+                    >
+                        {courses.map(course => (
+                            <MenuItem key={course} value={course}>
+                                {course}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </div>
             </Grid>
         </Grid>
     );
