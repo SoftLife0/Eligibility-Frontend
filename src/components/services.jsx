@@ -2,55 +2,67 @@
 import config from './config';
 
 class ApiService {
-  // Generic fetch method to handle API calls
-  async fetchData(method = 'GET', body = null) {
+  async fetchGrades() {
     try {
-      const options = {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-
-      if (body) {
-        options.body = JSON.stringify(body);
-      }
-
-      const response = await fetch(`${config.apiBaseUrl}`, options);
-
+      const response = await fetch(`${config.apiBaseUrl}`);
       if (!response.ok) {
-        throw new Error(`Failed to fetch`);
+        throw new Error('Failed to fetch grades');
       }
-
       const data = await response.json();
-      return data;
+      return data.grades; // Return only the grades array
     } catch (error) {
-      console.error(`Error fetching`, error);
+      console.error('Error fetching grades:', error);
       return null;
     }
   }
 
-  // Fetch Grades
-  async fetchGrades() {
-    const data = await this.fetchData();
-    return data ? data.grades : null;
-  }
-
-  // Fetch Courses
   async fetchCourses() {
-    const data = await this.fetchData();
-    return data ? data.courses : null;
+    try {
+      const response = await fetch(`${config.apiBaseUrl}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch courses');
+      }
+      const data = await response.json();
+      return data.courses;
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+      return null;
+    }
   }
 
-  // Fetch Electives
   async fetchElectives() {
-    const data = await this.fetchData();
-    return data ? data.electiveSubjects : null;
+    try {
+      const response = await fetch(`${config.apiBaseUrl}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch electives');
+      }
+      const data = await response.json();
+      return data.electiveSubjects;
+    } catch (error) {
+      console.error('Error fetching electives:', error);
+      return null;
+    }
   }
 
-  // Submit Form
   async submitForm(formData) {
-    return await this.fetchData('submitForm', 'POST', formData);
+    try {
+      const response = await fetch(`${config.apiBaseUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+      const data = await response.json();
+      console.log('Form submitted successfully!', data);
+      return data;
+    } catch (error) {
+      console.error('Error submitting form data:', error);
+      return null;
+    }
   }
 }
 
