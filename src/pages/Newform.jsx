@@ -105,6 +105,16 @@ const Newform = () => {
       return;
     }
 
+    // Check for duplicate electives
+    const electiveNames = electiveSubjects.map(subject => subject.elective);
+    const uniqueElectives = new Set(electiveNames);
+
+    if (uniqueElectives.size !== electiveNames.length) {
+      alert('Each elective subject must be unique. Please remove duplicates.');
+      setLoading(false);
+      return;
+    }
+    
     const formData = {
       name,
       number,
