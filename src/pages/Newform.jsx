@@ -51,11 +51,10 @@ const Newform = () => {
 
   // Let Handle core grade select change
   const handleCoreGradeSelect = (subject, grade) => {
-    if (grade === '--') {
-      alert('Please select a valid grade for ' + subject + '.');
-      return; // Prevents updating state if grade is invalid
-    }
-  
+    // if (grade === '--') {
+    //   alert('Please select a valid grade for ' + subject + '.');
+    //   return; // Prevents updating state if grade is invalid
+    // }
     setCoreSubjects((prevCoreSubjects) => ({
       ...prevCoreSubjects,
       [subject]: grade
@@ -67,10 +66,10 @@ const Newform = () => {
     const newElectives = [...electiveSubjects];
     newElectives[index][e.target.name] = e.target.value;
     // Check if the newly selected grade is invalid
-    if (newElectives[index].grade === '--') {
-      alert('Please select a valid grade for elective ' + (index + 1) + '.');
-      return; // Prevents updating state if grade is invalid
-    }
+    // if (newElectives[index].grade === '--') {
+    //   alert('Please select a valid grade for elective ' + (index + 1) + '.');
+    //   return; // Prevents updating state if grade is invalid
+    // }
     setElectiveSubjects(newElectives);
   };
 
