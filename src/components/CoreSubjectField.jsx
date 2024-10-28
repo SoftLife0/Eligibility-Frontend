@@ -1,19 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, TextField } from '@mui/material';
-import FetchGrades from './FetchGrades'; // Import the FetchGrades component
+import FetchGrades from './FetchGrades';
 
-const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
-    const [grades, setGrades] = useState({});
-
-    const handleGradeSelect = (subject, grade) => {
-        setGrades(prevGrades => ({
-            ...prevGrades,
-            [subject]: grade
-        }));
-
-        // Pass the selected grade back to the parent component
-        onGradeSelect(subject, grade);
-    };
+const CoreSubjectField = ({ coreSubjects, onGradeSelect, grades }) => {
 
     const grid = {
         paddingTop: '0'
@@ -24,37 +13,22 @@ const CoreSubjectField = ({ coreSubjects, onGradeSelect }) => {
             {Object.entries(coreSubjects).map(([subject, value], index) => (
                 <React.Fragment key={index}>
                     <Grid item xs={8} style={grid}>
-                        {/* <div className="form-control">
-                            <label htmlFor="subject" className="form-label">Subject</label>
-                            <input 
-                            className="answerSelectCard" 
-                            id="subject" 
-                            name="subject" 
-                            placeholder="subject" 
-                            type="text"
-                            disabled
-                            fullWidth
-                            value={subject}
-                            />
-                        </div> */}
                         <div className="form-group">
                             <TextField
-                                // label={subject}
                                 value={subject}
                                 fullWidth
                                 margin="normal"
                                 disabled
-                                style={{background:'#e9ecef'}}
+                                style={{ background: '#e9ecef' }}
                                 size="small"
-
                             />
                         </div>
                     </Grid>
                     <Grid item xs={4} style={grid}>
                         <div className="form-group">
                             <FetchGrades
-                                onSelectGrade={grade => handleGradeSelect(subject, grade)}
-                                grades={grades[subject]}
+                                onSelectGrade={selectedGrade => onGradeSelect(subject, selectedGrade)}
+                                grades={grades}
                             />
                         </div>
                     </Grid>
