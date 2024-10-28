@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 import Info from '../components/Info';
@@ -43,10 +43,11 @@ const Newform = () => {
   ]);
 
   // Let Handle Basic Information Input Change
-  const handleNameChange = (event) => setName(event.target.value);
-  const handleNumberChange = (event) => setNumber(event.target.value);
-  const handleEmailChange = (event) => setEmail(event.target.value);
-  const handleCourseOfferedChange = (event) => setCourseOffered(event.target.value);
+  const handleNameChange = useCallback((event) => setName(event.target.value), []);
+  const handleNumberChange = useCallback((event) => setNumber(event.target.value), []);
+  const handleEmailChange = useCallback((event) => setEmail(event.target.value), []);
+  const handleCourseOfferedChange = useCallback((event) => setCourseOffered(event.target.value), []);
+
 
   // Let Handle core grade select change
   const handleCoreGradeSelect = (subject, grade) => {
@@ -114,7 +115,7 @@ const Newform = () => {
       setLoading(false);
       return;
     }
-    
+
     const formData = {
       name,
       number,

@@ -2,63 +2,55 @@
 import config from './config';
 
 class ApiService {
-  async fetchGrades() {
+  // Generic fetch method to handle API calls
+  async fetchData(method = 'GET', body = null) {
     try {
-      const response = await fetch(`${config.apiBaseUrl}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch grades');
-      }
-      const data = await response.json();
-      return data.grades;
-    } catch (error) {
-      console.error('Error fetching grades:', error);
-      return null;
-    }
-  }
-
-  async fetchCourses() {
-    try {
-      const response = await fetch(`${config.apiBaseUrl}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch courses');
-      }
-      const data = await response.json();
-      return data.courses;
-    } catch (error) {
-      console.error('Error fetching courses:', error);
-      return null;
-    }
-  }
-
-  async fetchElectives() {
-    try {
-      const response = await fetch(`${config.apiBaseUrl}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch electives');
-      }
-      const data = await response.json();
-      return data.electiveSubjects;
-    } catch (error) {
-      console.error('Error fetching electives:', error);
-      return null;
-    }
-  }
-
-  async submitForm(formData) {
-    const response = await fetch(`${config.apiBaseUrl}`, {
-        method: 'POST',
+      const options = {
+        method,
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
-    });
+      };
 
-    if (!response.ok) {
-        throw new Error(`Form submission failed: ${response.statusText}`);
+      if (body) {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(`${config.apiBaseUrl}`, options);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(`Error fetching`, error);
+      return null;
     }
+  }
 
-    console.log("Response Body", response)
-    return response.json();
+  // Fetch Grades
+  async fetchGrades() {
+    const data = await this.fetchData();
+    return data ? data.grades : null;
+  }
+
+  // Fetch Courses
+  async fetchCourses() {
+    const data = await this.fetchData();
+    return data ? data.courses : null;
+  }
+
+  // Fetch Electives
+  async fetchElectives() {
+    const data = await this.fetchData();
+    return data ? data.electiveSubjects : null;
+  }
+
+  // Submit Form
+  async submitForm(formData) {
+    return await this.fetchData('submitForm', 'POST', formData);
   }
 }
 
