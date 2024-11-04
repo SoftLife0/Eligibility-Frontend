@@ -48,13 +48,22 @@ const Newform = () => {
   const handleEmailChange = useCallback((event) => setEmail(event.target.value), []);
   const handleCourseOfferedChange = useCallback((event) => setCourseOffered(event.target.value), []);
 
+  // // get an alert when user select -- as grades
+  // const handleGradeSelect = (subject, grade) => {
+  //   if (grade === '--') {
+  //     alert('Please select a valid grade for ' + subject + '.');
+  //     return;
+  //   }
+  // };
+
+
 
   // Let Handle core grade select change
   const handleCoreGradeSelect = (subject, grade) => {
-    // if (grade === '--') {
-    //   alert('Please select a valid grade for ' + subject + '.');
-    //   return; // Prevents updating state if grade is invalid
-    // }
+    if (grade === '--') {
+      alert('Please select a valid grade for ' + subject + '.');
+      return;
+    }
     setCoreSubjects((prevCoreSubjects) => ({
       ...prevCoreSubjects,
       [subject]: grade
@@ -66,10 +75,10 @@ const Newform = () => {
     const newElectives = [...electiveSubjects];
     newElectives[index][e.target.name] = e.target.value;
     // Check if the newly selected grade is invalid
-    // if (newElectives[index].grade === '--') {
-    //   alert('Please select a valid grade for elective ' + (index + 1) + '.');
-    //   return; // Prevents updating state if grade is invalid
-    // }
+    if (newElectives[index].grade === '--') {
+      alert('Please select a valid grade for elective ' + (index + 1) + '.');
+      return;
+    }
     setElectiveSubjects(newElectives);
   };
 
@@ -114,6 +123,13 @@ const Newform = () => {
       setLoading(false);
       return;
     }
+
+    // // check if grade = "--"
+    // if (grades === '--') {
+    //   alert('Please select a valid grade');
+    //   setLoading(false);
+    //   return;
+    // }
 
     // Check for duplicate electives
     const electiveNames = electiveSubjects.map(subject => subject.elective);
@@ -197,7 +213,7 @@ const Newform = () => {
         <CoreSubjectField coreSubjects={coreSubjects} grades={grades} onGradeSelect={handleCoreGradeSelect} />
 
         {/* Elective Subject Field */}
-        <div style={{ marginTop: '8px' }}>
+        <div style={{ marginTop: '8px', marginBottom: '20px' }}>
             <h4 style={headingStyle}>Elective Subjects</h4>
             <h6 style={subHeading}>Please fill the form with the details from your slip</h6>
         </div>
