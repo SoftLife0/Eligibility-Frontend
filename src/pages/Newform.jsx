@@ -48,7 +48,6 @@ const Newform = () => {
   const handleEmailChange = useCallback((event) => setEmail(event.target.value), []);
   const handleCourseOfferedChange = useCallback((event) => setCourseOffered(event.target.value), []);
 
-  // // get an alert when user select -- as grades
   // const handleGradeSelect = (subject, grade) => {
   //   if (grade === '--') {
   //     alert('Please select a valid grade for ' + subject + '.');
@@ -123,13 +122,6 @@ const Newform = () => {
       setLoading(false);
       return;
     }
-
-    // // check if grade = "--"
-    // if (grades === '--') {
-    //   alert('Please select a valid grade');
-    //   setLoading(false);
-    //   return;
-    // }
 
     // Check for duplicate electives
     const electiveNames = electiveSubjects.map(subject => subject.elective);
