@@ -48,14 +48,6 @@ const Newform = () => {
   const handleEmailChange = useCallback((event) => setEmail(event.target.value), []);
   const handleCourseOfferedChange = useCallback((event) => setCourseOffered(event.target.value), []);
 
-  // const handleGradeSelect = (subject, grade) => {
-  //   if (grade === '--') {
-  //     alert('Please select a valid grade for ' + subject + '.');
-  //     return;
-  //   }
-  // };
-
-
 
   // Let Handle core grade select change
   const handleCoreGradeSelect = (subject, grade) => {
@@ -93,22 +85,18 @@ const Newform = () => {
         const coursesData = await ApiService.fetchCourses();
         const gradesData = await ApiService.fetchGrades();
         const electivesData = await ApiService.fetchElectives();
-
-        if (coursesData) setCourses(coursesData);
-        if (gradesData) setGrades(gradesData);
-        if (electivesData) setElectives(electivesData);
-
-        // Print all data response from ApiService
-        console.log('Courses:', coursesData);
-        console.log('Grades:', gradesData);
-        console.log('Electives:', electivesData);
-      } catch (err) {
-        console.error(err);
-        setError('Error fetching data.');
+        
+        setCourses(coursesData || []);
+        setGrades(gradesData || []);
+        setElectives(electivesData || []);
+      } catch (error) {
+        // Navigate to ErrorPage and pass the error code as state
+        navigate('/error', { state: { statusCode: error.message } });
       }
     };
+
     fetchData();
-  }, []);
+  }, [navigate]);
 
 
    // Submit form handler
@@ -158,8 +146,9 @@ const Newform = () => {
       console.log('New Eligibility Response:', data);
       navigate('/eligible', { state: { data } }); 
     } catch (error) {
+      navigate('/error', { state: { statusCode: error.message } });
       setError('Error submitting form: ' + error.message);
-      console.error('Error submitting form:', error);
+      // console.error('Error submitting form:', error);
     } finally {
       setLoading(false);
     }
