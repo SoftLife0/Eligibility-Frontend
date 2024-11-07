@@ -85,26 +85,18 @@ const Newform = () => {
         const coursesData = await ApiService.fetchCourses();
         const gradesData = await ApiService.fetchGrades();
         const electivesData = await ApiService.fetchElectives();
-
-        setCourses(coursesData);
-        setGrades(gradesData);
-        setElectives(electivesData);
         
-
-        // Print all data response from ApiService
-        console.log('Courses:', coursesData);
-        console.log('Grades:', gradesData);
-        console.log('Electives:', electivesData);
-      } catch (err) {
-        console.error(err.message);
-        setError('Error fetching data.');
-        setError({ code: err.message.includes('404') ? 404 : 500, message: err.message });
-        // Redirect to error page
-        navigate('/error', { state: { error: err.message } });
+        setCourses(coursesData || []);
+        setGrades(gradesData || []);
+        setElectives(electivesData || []);
+      } catch (error) {
+        // Navigate to ErrorPage and pass the error code as state
+        navigate('/error', { state: { statusCode: error.message } });
       }
     };
+
     fetchData();
-  }, []);
+  }, [navigate]);
 
 
    // Submit form handler
@@ -154,8 +146,9 @@ const Newform = () => {
       console.log('New Eligibility Response:', data);
       navigate('/eligible', { state: { data } }); 
     } catch (error) {
+      navigate('/error', { state: { statusCode: error.message } });
       setError('Error submitting form: ' + error.message);
-      console.error('Error submitting form:', error);
+      // console.error('Error submitting form:', error);
     } finally {
       setLoading(false);
     }
