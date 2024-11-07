@@ -48,14 +48,6 @@ const Newform = () => {
   const handleEmailChange = useCallback((event) => setEmail(event.target.value), []);
   const handleCourseOfferedChange = useCallback((event) => setCourseOffered(event.target.value), []);
 
-  // const handleGradeSelect = (subject, grade) => {
-  //   if (grade === '--') {
-  //     alert('Please select a valid grade for ' + subject + '.');
-  //     return;
-  //   }
-  // };
-
-
 
   // Let Handle core grade select change
   const handleCoreGradeSelect = (subject, grade) => {
@@ -94,17 +86,21 @@ const Newform = () => {
         const gradesData = await ApiService.fetchGrades();
         const electivesData = await ApiService.fetchElectives();
 
-        if (coursesData) setCourses(coursesData);
-        if (gradesData) setGrades(gradesData);
-        if (electivesData) setElectives(electivesData);
+        setCourses(coursesData);
+        setGrades(gradesData);
+        setElectives(electivesData);
+        
 
         // Print all data response from ApiService
         console.log('Courses:', coursesData);
         console.log('Grades:', gradesData);
         console.log('Electives:', electivesData);
       } catch (err) {
-        console.error(err);
+        console.error(err.message);
         setError('Error fetching data.');
+        setError({ code: err.message.includes('404') ? 404 : 500, message: err.message });
+        // Redirect to error page
+        navigate('/error', { state: { error: err.message } });
       }
     };
     fetchData();

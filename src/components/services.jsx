@@ -6,7 +6,7 @@ class ApiService {
     try {
       const response = await fetch(`${config.apiBaseUrl}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch grades');
+        throw new Error(`Error ${response.status}: Failed to fetch grades`);
       }
       const data = await response.json();
       return data.grades; // Return only the grades array
@@ -20,7 +20,7 @@ class ApiService {
     try {
       const response = await fetch(`${config.apiBaseUrl}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch courses');
+        throw new Error(`Error ${response.status}: Failed to fetch courses`);
       }
       const data = await response.json();
       return data.courses;
@@ -34,7 +34,7 @@ class ApiService {
     try {
       const response = await fetch(`${config.apiBaseUrl}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch electives');
+        throw new Error(`Error ${response.status}: Failed to fetch electives`);
       }
       const data = await response.json();
       return data.electiveSubjects;
@@ -54,7 +54,7 @@ class ApiService {
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error('Failed to submit form');
+        throw new Error(`Error ${response.status}: Failed to submit form`);
       }
       const data = await response.json();
       console.log('Form submitted successfully!', data);
