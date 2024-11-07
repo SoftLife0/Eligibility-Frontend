@@ -14,7 +14,7 @@ const ErrorPage = () => {
     <>
     <Header />
       <div style={{ textAlign: 'center', padding: '110px 50px' }}>
-        <span role="img" style={checkmarkStyle} aria-label="">❌</span>
+        <span role="img" style={checkmarkStyle} aria-label="Emoji">❌</span>
         <h1>{statusCode === 404 ? '404 - Not Found' : ' \n Internal Server Error'}</h1>
         <p>Oops! Something went wrong. Our engineers are on it, please check and try again later.</p>
       </div>
