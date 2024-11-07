@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Header from '../components/Header';
 
 const ErrorPage = () => {
   const location = useLocation();
@@ -11,9 +12,10 @@ const ErrorPage = () => {
 
   return (
     <>
-      <div style={{ textAlign: 'center', padding: '50px' }}>
+    <Header />
+      <div style={{ textAlign: 'center', padding: '110px 50px' }}>
         <span role="img" style={checkmarkStyle} aria-label="">❌</span>
-        <h1>{statusCode === 404 ? '404 - Not Found' : '500 \n Internal Server Error'}</h1>
+        <h1>{statusCode === 404 ? '404 - Not Found' : ' \n Internal Server Error'}</h1>
         <p>Oops! Something went wrong. Our engineers are on it, please check and try again later.</p>
       </div>
     </>
